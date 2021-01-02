@@ -1,0 +1,67 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+# [line_break]
+# disabled = true
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 10
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "bold yellow"
+
+# if battery capacity is more than 30% it won't show
+
+# [[battery.display]]  # "bold yellow" style when capacity is between 30% and 100%
+# threshold = 100
+# style = "bold green"
+
+[character]
+format = "$symbol "
+vicmd_symbol = "[❮](bold fg:69)"
+success_symbol = "[❯](bold fg:202)"
+error_symbol = "[❯](bold fg:202)"
+# error_symbol = "[✗➜](bold red) "
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+
+[memory_usage]
+format = "$symbol[$ram_pct]($style) "
+disabled = false
+threshold = -1
+style = "bold dimmed green"
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+format = "[took ${duration}](bold yellow)"
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+# [time]
+# disabled = false
+# format = "[$time]($style)"
+
+#[username]
+#style_user = "white bold"
+#style_root = "black bold"
+#format = "user: [$user]($style) "
+#disabled = false
+#show_always = true
+

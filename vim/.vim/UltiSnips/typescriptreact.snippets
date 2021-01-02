@@ -1,0 +1,132 @@
+# extends javascript
+snippet bc "Add block comment"
+/** $1 */
+endsnippet
+
+snippet todo "TODO snippet"
+// TODO: ${1}
+endsnippet
+
+snippet docs "This is a doc snippet"
+/**
+ * @author `echo $(git config --list | grep user.name | cut -d "=" -f 2)`
+ * @time `!v strftime("%c")`
+ *
+ * $2
+ */
+endsnippet
+
+snippet clog "Console log snippet"
+console.log(${1:text})
+endsnippet	
+
+snippet ec "Snippet: export const"
+export const ${1:NAME} = "${2}";
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# React Stuff
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet rc "Create React class Component"
+import React, { Component } from 'react';
+
+class `!v expand('%:t:r')` extends Component {
+	render() {
+		return (
+			${1:<></>}
+		)
+	}
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet	
+
+snippet rcws "Create React class Component with State"
+import React, { Component } from 'react';
+
+interface ${1:Props} {};
+interface ${2:IState} {
+	${3:value}: ${4:string},
+}
+
+class `!v expand('%:t:r')` extends Component<$1, $2> {
+	constructor(props: $1) {
+		super(props);
+
+		this.state = {
+			$3: '',
+		}
+	}
+
+	render() {
+		return <></>;
+	}
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet	
+
+snippet rcwp "Create React class Component with Props"
+import React, { Component } from 'react';
+
+interface ${1:Props} {
+	${2:value}: ${3:string},
+}
+
+class `!v expand('%:t:r')` extends Component<$1> {
+	render() {
+		return <></>;
+	}
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet	
+
+snippet rf "Create React function Component"
+import React from 'react';
+
+const `!v expand('%:t:r')` = (${1}) => {
+	return (
+		${2:<></>}
+	)
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet
+
+snippet rnf "Snippet: create react named function component"
+import React from 'react';
+
+const ${1:`!v expand('%:t:r')`} = (${2}) => {
+	return (
+		${3:<></>}
+	)
+}
+
+export default $1;
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# React Stuff: @material-ui
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet @btn "Create @material-ui button component"
+import React from 'react';
+import Button from '@material-ui/core/Button';
+
+const `!v expand('%:t:r')` = (${1}) => {
+	return (
+		<Button ${2}>
+			${3:Why Hello There}
+		</Button>
+	)
+}
+
+export default `!v expand('%:t:r')`;
+
+endsnippet

@@ -1,0 +1,110 @@
+snippet t "Simple HTML tag" b
+<${1:div}>
+	Hello World
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet htmltodo "This is a TODO reminder for HTML" b
+<!-- TODO: `echo $USER` ${1:desc} | `!v strftime("%c")` -->
+endsnippet
+	
+snippet jstodo "This is a TODO reminder for Js" b
+/**
+ * TODO:
+ * @author `echo $(git config --list | grep user.name | cut -d "=" -f 2)`
+ * @time `!v strftime("%c")`
+ *
+ * ${2:description}
+ */
+endsnippet
+
+snippet clog "Console log snippet"
+console.log(${1:text})
+endsnippet	
+
+snippet clogsep "Console log separator"
+console.log("--------------------------------------------------------------")
+endsnippet
+	
+snippet reg "Js regex"
+/$1/$2
+endsnippet
+
+snippet docs "This is a doc snippet"
+/**
+ * @author ${1:`echo $USER`}
+ * @time `!v strftime("%c")`
+ *
+ * $2
+ */
+endsnippet
+
+snippet for "Snippet: for loop"
+for (let ${1:i} = ${2:0}; $1 < ${3:length}; $1${4:++}) {
+	${5}
+}
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# React Stuff
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# React Class Component
+snippet rc "Create React class Component"
+import React, { Component } from 'react';
+
+class `!v expand('%:t:r')` extends Component {
+	render() {
+		return (
+			${1:<></>}
+		)
+	}
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet	
+
+# React Function Component
+snippet rf "Create React function Component"
+import React from 'react';
+
+const `!v expand('%:t:r')` = (${1}) => {
+	return (
+		${2:<></>}
+	)
+}
+
+export default `!v expand('%:t:r')`;
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# express
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet exget "Snippet: express get"
+${1:app}.get('/${2}', (request, response) => {
+	${3}
+});
+endsnippet
+
+snippet exdel "Snippet: express delete"
+${1:app}.delete('/${2}', (request, response) => {
+	${3}
+});
+endsnippet
+
+snippet expos "Snippet: express post"
+${1:app}.post('/${2}', (request, response) => {
+	${3}
+});
+endsnippet
+
+snippet mw "Snippet: middleware"
+const ${1:mw} = (request, response, ${2:next}) => {
+	${3}
+}
+endsnippet

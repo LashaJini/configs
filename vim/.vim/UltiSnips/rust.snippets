@@ -1,0 +1,29 @@
+snippet main "main function"
+fn main() {
+	${0}
+}
+endsnippet
+
+snippet let "let declaration"
+let $1 = $2${3:;}
+endsnippet
+
+snippet letm "let mutable declaration"
+let mut $1 = $2${3:;}
+endsnippet
+
+snippet fpr "snippet for println! with formatting"
+println!("{${1:}}", $2)${3:;}
+endsnippet
+
+snippet efpr "snippet for eprintln! with formatting"
+eprintln!("{${1:}}", $2)${3:;}
+endsnippet
+
+snippet pr "snippet for println!"
+println!("${1}")${2:;}
+endsnippet
+
+snippet format "snippet for format!"
+format!("${1:{}}", $2)${3:;}
+endsnippet
