@@ -18,8 +18,12 @@ snippet jstodo "This is a TODO reminder for Js" b
  */
 endsnippet
 
-snippet clog "Console log snippet"
+snippet clog "Snippet: console log"
 console.log(${1:text})
+endsnippet	
+
+snippet cer "Snippet: console error"
+console.error(${1:text})
 endsnippet	
 
 snippet clogsep "Console log separator"
@@ -43,6 +47,32 @@ snippet for "Snippet: for loop"
 for (let ${1:i} = ${2:0}; $1 < ${3:length}; $1${4:++}) {
 	${5}
 }
+endsnippet
+
+snippet req "Snippet: CommonJS require"
+const ${1:http} = require("${2:$1}")
+endsnippet
+
+snippet mex "Snippet: CommonJS module exports"
+module.exports = {
+	${1}
+}
+endsnippet
+
+snippet dmex "Snippet: CommonJS 'default' module exports"
+module.exports = ${1}
+endsnippet
+
+snippet const "Snippet: const"
+const ${1:elem} = ${2:1}
+endsnippet
+
+snippet imp "Snippet: ESM import"
+import ${1: axios} from "$1"
+endsnippet
+
+snippet dex "Snippet: ESM default export"
+export default $1
 endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -79,32 +109,99 @@ const `!v expand('%:t:r')` = (${1}) => {
 export default `!v expand('%:t:r')`;
 endsnippet
 
+# $1 = ${1/.*/\u$0/}.new
+snippet state "Snippet: React.useState"
+const [$1, set${1/.*/\u$0/}] = useState(${2:""})
+endsnippet
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # express
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-snippet exget "Snippet: express get"
-${1:app}.get('/${2}', (request, response) => {
-	${3}
+snippet exget "Snippet: express get function"
+${1:app}.get('/${2}', (request, response, ${3:next}) => {
+	${4}
 });
 endsnippet
 
-snippet exdel "Snippet: express delete"
-${1:app}.delete('/${2}', (request, response) => {
-	${3}
+snippet aexget "Snippet: async express get function"
+${1:app}.get('/${2}', async (request, response, ${3:next}) => {
+	${4}
 });
 endsnippet
 
-snippet expos "Snippet: express post"
-${1:app}.post('/${2}', (request, response) => {
-	${3}
+snippet exdel "Snippet: express delete function"
+${1:app}.delete('/${2}', (request, response, ${3:next}) => {
+	${4}
 });
 endsnippet
 
-snippet mw "Snippet: middleware"
+snippet aexdel "Snippet: async express delete function"
+${1:app}.delete('/${2}', async (request, response, ${3:next}) => {
+	${4}
+});
+endsnippet
+
+snippet expos "Snippet: express post function"
+${1:app}.post('/${2}', (request, response, ${3:next}) => {
+	${4}
+});
+endsnippet
+
+snippet aexpos "Snippet: async express post function"
+${1:app}.post('/${2}', async (request, response, ${3:next}) => {
+	${4}
+});
+endsnippet
+
+snippet exput "Snippet: express put function"
+${1:app}.put('/${2}/:id', (request, response, ${3:next}) => {
+	${4}
+});
+endsnippet
+
+snippet aexput "Snippet: async express put function"
+${1:app}.put('/${2}/:id', async (request, response, ${3:next}) => {
+	${4}
+});
+endsnippet
+
+snippet mw "Snippet: middleware function"
 const ${1:mw} = (request, response, ${2:next}) => {
 	${3}
 }
+endsnippet
+
+snippet emw "Snippet: error middleware function"
+const ${1:emw} = (error, request, response, ${2:next}) => {
+	${3}
+}
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# jest
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet desc "Snippet: describe"
+describe("${1}", () => {
+	test("${2}", () => {
+		${3}
+	})
+})
+endsnippet
+
+snippet test "Snippet: test"
+test("${1}", () => {
+	${2}
+})
+endsnippet
+
+snippet atest "Snippet: async test"
+test("${1}", async () => {
+	${2}
+})
 endsnippet

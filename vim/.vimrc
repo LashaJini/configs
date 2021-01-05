@@ -946,7 +946,8 @@ command! -nargs=0 Format :call CocAction('format')
 " Add `:Fold` command to fold current buffer.
 " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-let g:coc_config_home='/root/github/configs/vim/.vim/coc'
+" let g:coc_config_home='/root/github/configs/vim/.vim/coc'
+let g:coc_config_home='/root/109149/configs/vim/.vim/coc'
 
 nmap <leader>coc<cr> :CocRestart<cr>
 nmap <leader>cocd<cr> :CocDisable<cr>
