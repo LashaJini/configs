@@ -1,7 +1,15 @@
-snippet t "Simple HTML tag" b
-<${1:div}>
-	Hello World
-</${1/(\w+).*/$1/}>
+snippet ob "Snippet: const ... = {...}"
+const ${1} = {
+	${0}
+}
+endsnippet
+
+snippet $ "Snippet: ${...}"
+${${1}}
+endsnippet
+
+snippet ec "Snippet: export const"
+export const ${1:PORT} = ${2}
 endsnippet
 
 snippet htmltodo "This is a TODO reminder for HTML" b
@@ -28,6 +36,10 @@ endsnippet
 
 snippet clogsep "Console log separator"
 console.log("--------------------------------------------------------------")
+endsnippet
+
+snippet bc "Snippet: block comment"
+/* ${1} */
 endsnippet
 	
 snippet reg "Js regex"
@@ -68,11 +80,35 @@ const ${1:elem} = ${2:1}
 endsnippet
 
 snippet imp "Snippet: ESM import"
-import ${1: axios} from "$1"
+import ${1:axios} from "${2:$1}"
 endsnippet
 
 snippet dex "Snippet: ESM default export"
 export default $1
+endsnippet
+
+snippet f "Snippet: function expression"
+const ${1:handler} = (${2}) => {
+	${0}
+}
+endsnippet
+
+snippet af "Snippet: async function expression"
+const ${1:handler} = async (${2}) => {
+	${0}
+}
+endsnippet
+
+snippet aw "Snippet: await"
+await ${1}
+endsnippet
+
+snippet caw "Snippet: const ... = await ..."
+const ${1:response} = await ${2}
+endsnippet
+
+snippet dest "Snippet: destructure"
+const { ${1} } = ${2}
 endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -111,7 +147,21 @@ endsnippet
 
 # $1 = ${1/.*/\u$0/}.new
 snippet state "Snippet: React.useState"
-const [$1, set${1/.*/\u$0/}] = useState(${2:""})
+const [$1, set${1/.*/\u$0/}] = React.useState(${2:""})
+endsnippet
+
+snippet effect "Snippet: React.useEffect"
+React.useEffect(() => {
+	${1}
+}, [${2}])
+endsnippet
+
+snippet =" "Snippet: name=''"
+${1:className}="${2}"
+endsnippet
+
+snippet ={ "Snippet: name={}"
+${1:onClick}={${2:handleClick}}
 endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -120,49 +170,49 @@ endsnippet
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-snippet exget "Snippet: express get function"
+snippet get "Snippet: express get function"
 ${1:app}.get('/${2}', (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet aexget "Snippet: async express get function"
+snippet aget "Snippet: async express get function"
 ${1:app}.get('/${2}', async (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet exdel "Snippet: express delete function"
+snippet del "Snippet: express delete function"
 ${1:app}.delete('/${2}', (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet aexdel "Snippet: async express delete function"
+snippet adel "Snippet: async express delete function"
 ${1:app}.delete('/${2}', async (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet expos "Snippet: express post function"
+snippet post "Snippet: express post function"
 ${1:app}.post('/${2}', (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet aexpos "Snippet: async express post function"
+snippet apost "Snippet: async express post function"
 ${1:app}.post('/${2}', async (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet exput "Snippet: express put function"
+snippet put "Snippet: express put function"
 ${1:app}.put('/${2}/:id', (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
 
-snippet aexput "Snippet: async express put function"
+snippet aput "Snippet: async express put function"
 ${1:app}.put('/${2}/:id', async (request, response, ${3:next}) => {
 	${4}
 });
@@ -182,26 +232,73 @@ endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# jest
+# jest, mocha(doesn't like arrows)
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-snippet desc "Snippet: describe"
-describe("${1}", () => {
-	test("${2}", () => {
+snippet descb "Snippet: describe...async beforeEach...async test" 
+describe("${1}", function () {
+	beforeEach(${2:async} function () {
 		${3}
+	})
+
+	${4:test}("${5}", ${6:async} function () {
+		${7}
+	})
+	
+})
+endsnippet
+
+snippet desc "Snippet: async describe"
+describe("${1}", function () {
+	${2:test}("${3}", ${4:async} function () {
+		${5}
 	})
 })
 endsnippet
 
 snippet test "Snippet: test"
-test("${1}", () => {
+test("${1}", function () {
+	${2}
+})
+endsnippet
+
+snippet it "Snippet: it"
+it("${1}", function () {
 	${2}
 })
 endsnippet
 
 snippet atest "Snippet: async test"
-test("${1}", async () => {
+test("${1}", async function () {
 	${2}
+})
+endsnippet
+
+snippet ait "Snippet: async it"
+it("${1}", async function () {
+	${2}
+})
+endsnippet
+
+snippet ito "Snippet: it.only"
+it.only("${1}", function() {
+	${2}
+})
+endsnippet
+
+snippet beach "Snippet: beforeEach"
+beforeEach(function () {
+	${1}
+})
+endsnippet
+
+snippet ex2b "Snippet: expect..toBe"
+expect(${1}).${2:toBe}(${3});
+endsnippet
+
+snippet all "Snippet: afterAll"
+afterAll(() => {
+	${0}
 })
 endsnippet

@@ -594,11 +594,13 @@ map <leader>bb <c-w>v<c-w>l :e /tmp/buffer<cr>i
 
 " auto closing curly braces
 inoremap {<CR> {<CR>}<Esc>ko
+" inoremap { {}<Esc>i
 " auto closing brackets
 inoremap [<CR> [<CR>]<Esc>ko
 " inoremap [ []<Esc>i
 " auto closing parentheses
 " inoremap ( ()<Esc>i
+" inoremap (<esc> ()
 inoremap (<cr> (<cr>)<Esc>ko
 
 inoremap ({<CR> ({<CR>})<Esc>ko
@@ -607,7 +609,6 @@ inoremap {[<CR> {[<CR>]}<Esc>ko
 inoremap [{<CR> [{<CR>}]<Esc>ko
 " inoremap ' ''<Esc>i
 " inoremap " ""<Esc>i
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs

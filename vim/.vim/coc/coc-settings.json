@@ -1,5 +1,5 @@
 {
-  "tsserver.enableJavascript": false,
+  "tsserver.enableJavascript": true,
   "tsserver.maxTsServerMemory": 512,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.infoSign": "?",
