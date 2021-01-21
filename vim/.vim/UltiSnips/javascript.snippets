@@ -1,3 +1,11 @@
+snippet cl "Snippet: const ... = new ...()"
+const ${1} = new ${2:Array}(${3})
+endsnippet
+
+snippet ar "Snippet: () => ..."
+(${1}) => ${2}
+endsnippet
+
 snippet ob "Snippet: const ... = {...}"
 const ${1} = {
 	${0}
@@ -8,7 +16,7 @@ snippet $ "Snippet: ${...}"
 ${${1}}
 endsnippet
 
-snippet ec "Snippet: export const"
+snippet exc "Snippet: export const"
 export const ${1:PORT} = ${2}
 endsnippet
 
@@ -46,6 +54,12 @@ snippet reg "Js regex"
 /$1/$2
 endsnippet
 
+snippet doc "Snippet: simple doc comment"
+/**
+ * ${1}
+ */
+endsnippet
+
 snippet docs "This is a doc snippet"
 /**
  * @author ${1:`echo $USER`}
@@ -71,16 +85,16 @@ module.exports = {
 }
 endsnippet
 
-snippet dmex "Snippet: CommonJS 'default' module exports"
-module.exports = ${1}
-endsnippet
-
 snippet const "Snippet: const"
 const ${1:elem} = ${2:1}
 endsnippet
 
 snippet imp "Snippet: ESM import"
-import ${1:axios} from "${2:$1}"
+import $1 from "${2:${1/.*/\l$0/}}"
+endsnippet
+
+snippet dimp "Snippet: ESM import destructured"
+import {$1} from "${2:${1/.*/\l$0/}}"
 endsnippet
 
 snippet dex "Snippet: ESM default export"
@@ -160,7 +174,8 @@ snippet =" "Snippet: name=''"
 ${1:className}="${2}"
 endsnippet
 
-snippet ={ "Snippet: name={}"
+# snippet ={ "Snippet: name={}"
+snippet eqc "Snippet: onClick={handleClick}"
 ${1:onClick}={${2:handleClick}}
 endsnippet
 
@@ -297,8 +312,30 @@ snippet ex2b "Snippet: expect..toBe"
 expect(${1}).${2:toBe}(${3});
 endsnippet
 
-snippet all "Snippet: afterAll"
+snippet aall "Snippet: afterAll"
 afterAll(() => {
 	${0}
 })
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# gql
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet gql "Snippet: const ... = gql`...`"
+const ${1} = gql\`
+	${0}
+\`
+endsnippet
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# three js
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet 3 "Snippet: new THREE...."
+new THREE.${2:Mesh}(${3})
 endsnippet

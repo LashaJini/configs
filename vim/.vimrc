@@ -188,7 +188,9 @@ colorscheme monokai
 " colorscheme spacecamp
 " colorscheme spacecamp_lite
 " colorscheme dracula
-set background=dark
+
+" set background=dark
+set background=light
 let mapleader=" "
 
 if executable('rg')

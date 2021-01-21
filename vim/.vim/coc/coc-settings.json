@@ -6,6 +6,7 @@
   "diagnostic.errorSign": "✘",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "scss",
     "markdown",
     "Markdown",
     "javascript",
@@ -15,7 +16,9 @@
     "rust",
     "json",
     "cpp",
-    "html"
+    "html",
+    "yaml",
+    "pug"
   ],
   "coc.preferences.colorSupport": true,
   "clangd.path": "/root/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
