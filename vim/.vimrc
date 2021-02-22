@@ -63,7 +63,7 @@ runtime! debian.vim
 "  source /etc/vim/vimrc.local
 "endif
 
-syntax on
+" syntax on
 
 set encoding=UTF-8
 
