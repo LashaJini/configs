@@ -3,3 +3,14 @@ snippet lang "language markdown snippet" b!
 $2
 \`\`\`
 endsnippet
+
+snippet voc "Snippet: for vocabulary"
+const n = {
+	type: "${1:word}",
+	voc: "${2}",
+	definitions: [${3}],
+	synonyms: [${4}],
+	translations: [${5}],
+	contexts: [${6}],
+}
+endsnippet
