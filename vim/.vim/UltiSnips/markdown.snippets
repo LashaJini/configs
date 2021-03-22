@@ -29,3 +29,7 @@ ${3}
 **[⬆ Back to Top](${4:#table-of-contents})**
 
 endsnippet
+
+snippet an "Snippet: anchor"
+[${1:question}](#${1/(\w+\?*)(\s*)/\L$1\E(?2:-)/g})
+endsnippet
