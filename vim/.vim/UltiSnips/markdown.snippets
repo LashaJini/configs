@@ -31,5 +31,5 @@ ${3}
 endsnippet
 
 snippet an "Snippet: anchor"
-[${1:question}](#${1/(\w+\?*)(\s*)/\L$1\E(?2:-)/g})
+[${1:question}](#${1/(\W*)(\w+)(\S*)(\s*)/\L$2\E(?4:-)/g})
 endsnippet
