@@ -378,9 +378,7 @@ nnoremap <leader>cg :w<cr>:call OpenTerminal(1, 1, 'cargo run')<cr>
 nnoremap <leader>tcg :w<cr>:call OpenTerminal(1, 1, 'cargo test')<cr>
 nnoremap <leader>vcg :w<cr>:call OpenTerminal(0, 1, 'cargo run')<cr>
 nnoremap <leader>tvcg :w<cr>:call OpenTerminal(0, 1, 'cargo test')<cr>
-" Cargo doc
-" nnoremap <leader>dcg :w<cr>:call OpenTerminal(1, 1, 'cargo doc --open')<cr>
-" nnoremap <leader>dcg :w<cr>:silent exec "!cargo doc --open"<cr>
+nnoremap <leader>check :w<cr>:call OpenTerminal(1,1,'cargo check')<cr>
 " rust wasm
 nnoremap <leader>wasm :w<cr>:call OpenTerminal(1,1, 'wasm-pack build')<cr>
 nnoremap <leader>vwasm :w<cr>:call OpenTerminal(0,1, 'wasm-pack build')<cr>
@@ -514,6 +512,8 @@ map <leader>p<cr> <C-W>p
 map <leader>T <C-W>T
 " Equalize windows
 map <leader>= <C-W>=
+nnoremap <silent> + :resize +1<cr>
+nnoremap <silent> - :resize -1<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :call CD()<cr>
@@ -848,6 +848,9 @@ autocmd FileType html,css EmmetInstall
 " <C-t> open in new tab
 " <C-v> <C-s> split
 " let g:ctrlp_user_command = ['.git/', 'node_modules/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" ignore files in .gitigonre
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

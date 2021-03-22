@@ -18,6 +18,7 @@
     "cpp",
     "html",
     "yaml",
+    "jade",
     "pug"
   ],
   "coc.preferences.colorSupport": true,

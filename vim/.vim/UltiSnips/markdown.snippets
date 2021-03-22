@@ -1,3 +1,4 @@
+extends javascript
 snippet lang "language markdown snippet" b!
 \`\`\`${1:bash}
 $2
@@ -13,4 +14,18 @@ const n = {
 	translations: [${5}],
 	contexts: [${6}],
 }
+endsnippet
+
+snippet qa "Snippet: number + question + dropdown + answer + back to top combo"
+${1:1}. ### ${2:Question}
+
+<details>
+<summary>ANSWER</summary>
+
+${3}
+
+</details>
+
+**[⬆ Back to Top](${4:#table-of-contents})**
+
 endsnippet
