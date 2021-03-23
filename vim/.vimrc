@@ -963,9 +963,9 @@ nmap <leader>coce<cr> :CocEnable<cr>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " will be automatically installed and updated by Coc.
-let g:coc_global_extensions = [
-  \ 'coc-tsserver'
-  \ ]
+" let g:coc_global_extensions = [
+"   \ 'coc-tsserver'
+"   \ ]
 
 function! CloseCocWindows()
   call coc#float#close_all()

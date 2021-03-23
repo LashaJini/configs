@@ -20,7 +20,7 @@ snippet qa "Snippet: number + question + dropdown + answer + back to top combo"
 ${1:1}. ### ${2:Question}
 
 <details>
-<summary>ANSWER</summary>
+<summary>answer</summary>
 
 ${3}
 
@@ -28,8 +28,10 @@ ${3}
 
 **[⬆ Back to Top](${4:#table-of-contents})**
 
+---
+
 endsnippet
 
 snippet an "Snippet: anchor"
-[${1:question}](#${1/(\W*)(\w+)(\S*)(\s*)/\L$2\E(?4:-)/g})
+[${1:question}](#${1/(\W*)(\w+)([\\'"`<>\/?])*(\s*)/\L$2\E(?4:-)/g})
 endsnippet
