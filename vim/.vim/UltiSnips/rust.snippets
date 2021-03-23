@@ -1,3 +1,16 @@
+snippet cp_path "Snippet: dashed file name to underscore named module"
+#[path = "./${1}/${2}.rs"]
+pub mod ${2/-/_/g};
+endsnippet
+
+snippet cp_input "Snippet: parse one line of user input"
+let mut ${1:input} = String::new();
+
+std::io::stdin()
+	.read_line(&mut $1)
+	.expect("failed to read line");
+endsnippet
+
 snippet map "Snippet: .map(...)"
 .map(|${1}| ${2})
 endsnippet
