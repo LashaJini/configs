@@ -1,10 +1,18 @@
-snippet cp_path "Snippet: dashed file name to underscore named module"
+snippet split "Snippet: split empty spaced string into vector of u32s."
+${1:input}.split(${2:" "}).map(|x| x.trim().parse::${3:<u32>}().unwrap()).collect::${4:<Vec<u32>>}();
+endsnippet
+
+snippet parse "Snippet: parse string to u32"
+${1:n}.trim().parse::${2:<u32>}().unwrap()
+endsnippet
+
+snippet path "Snippet: dashed file name to underscore named module"
 #[path = "./${1}/${2}.rs"]
 pub mod ${2/-/_/g};
 endsnippet
 
-snippet cp_input "Snippet: parse one line of user input"
-let mut ${1:input} = String::new();
+snippet line "Snippet: read one line of user input"
+let mut ${1:user_input} = String::new();
 
 std::io::stdin()
 	.read_line(&mut $1)
