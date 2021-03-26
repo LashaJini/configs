@@ -1,5 +1,21 @@
+snippet max "Snippet: std::cmp::max"
+std::cmp::max(${1}, ${2})
+endsnippet
+
+snippet min "Snippet: std::cmp::min"
+std::cmp::min(${1}, ${2})
+endsnippet
+
+snippet ar "Snippet: |...|"
+|${1:_}| ${2}
+endsnippet
+
+snippet ordering "Snippet: std::cmp::Ordering"
+std::cmp::Ordering::${1}
+endsnippet
+
 snippet split "Snippet: split empty spaced string into vector of u32s."
-${1:input}.split(${2:" "}).map(|x| x.trim().parse::${3:<u32>}().unwrap()).collect::${4:<Vec<u32>>}();
+${1:user_input}.split(${2:" "}).map(|x| x.trim().parse::${3:<u32>}().unwrap()).collect::${4:<Vec<u32>>}();
 endsnippet
 
 snippet parse "Snippet: parse string to u32"
