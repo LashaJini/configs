@@ -15,7 +15,7 @@ std::cmp::Ordering::${1}
 endsnippet
 
 snippet split "Snippet: split empty spaced string into vector of u32s."
-${1:user_input}.split(${2:" "}).map(|x| x.trim().parse::${3:<u32>}().unwrap()).collect::${4:<Vec<u32>>}();
+${1:user_input}.split(${2:" "}).map(|x| x.trim().parse::<${3:u32}>().unwrap()).collect::<Vec<$3>>();
 endsnippet
 
 snippet parse "Snippet: parse string to u32"
@@ -29,14 +29,13 @@ endsnippet
 
 snippet line "Snippet: read one line of user input"
 let mut ${1:user_input} = String::new();
-
 std::io::stdin()
 	.read_line(&mut $1)
 	.expect("failed to read line");
 endsnippet
 
 snippet map "Snippet: .map(...)"
-.map(|${1}| ${2})
+.map(|${1:_}| ${2})
 endsnippet
 
 snippet main "main function"

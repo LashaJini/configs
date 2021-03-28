@@ -1,3 +1,9 @@
+snippet gen "Snippet: function* foo()..."
+function* ${1:gen}(${2}) {
+	${3}
+}
+endsnippet
+
 snippet devlog "Snippet: if (__DEV__) console.log(...)"
 if (process.env.NODE_ENV === "development") console.log(${1})
 endsnippet
