@@ -1,3 +1,9 @@
+snippet styled "Snippet: const NAME = styled.div``"
+const ${1:Div} = styled.${2:div}\`
+${3}
+\`
+endsnippet
+
 snippet gen "Snippet: function* foo()..."
 function* ${1:gen}(${2}) {
 	${3}
@@ -212,6 +218,10 @@ const `!v expand('%:t:r')` = (${1}) => {
 }
 
 export default `!v expand('%:t:r')`;
+endsnippet
+
+snippet context "Snippet: const ... = React.useContext(...)"
+const ${1} = React.useContext(${2})
 endsnippet
 
 # $1 = ${1/.*/\u$0/}.new
