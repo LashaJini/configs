@@ -303,6 +303,8 @@ nnoremap <leader>xp "xp
 nnoremap <leader>X "Xyy
 vnoremap <leader>X "Xy
 
+nnoremap <leader>pc V$%y
+
 set langmap=აa,იi,ბb,წw,ფf,ოo,OO,AA,II,პp,PP,ეe,რr,ღR,ყy,უu,დd,DD,გg,GG,ჰh,ჯj,კk,ლl,ხx,ცc,ჩC,ვv,VV
 " list buffers
 " nmap <leader>ls  :ls<cr>
