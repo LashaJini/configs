@@ -109,7 +109,7 @@ Plug 'https://github.com/joshdick/onedark.vim'
 
 " Plug 'jremmen/vim-ripgrep'
 " git wrapper
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 "Plug 'leafgarland/typescript-vim'
 " Plug 'vim-utils/vim-man'
@@ -626,12 +626,12 @@ autocmd! bufwritepost ~/.vimrc source ~/.vimrc
 "autocmd vimenter * NERDTree
 
 " Open NERDTree automatically when vim starts if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | else | :call Maybe()  |  endif
-fun! Maybe()
-  NERDTree
-  :wincmd l
-endfun
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | else | :call Maybe()  |  endif
+" fun! Maybe()
+"   NERDTree
+"   :wincmd l
+" endfun
 
 " move cursor on left window instead of NERDTree window
 " autocmd vimenter * wincmd l
