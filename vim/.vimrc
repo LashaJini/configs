@@ -279,8 +279,18 @@ augroup numbertoggle
 augroup END
 
 
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
 " toggle cursorline 
-autocmd InsertEnter,InsertLeave * set cul!
+" autocmd InsertEnter,InsertLeave * set cul!
+set cul
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -303,7 +313,10 @@ nnoremap <leader>xp "xp
 nnoremap <leader>X "Xyy
 vnoremap <leader>X "Xy
 
-nnoremap <leader>pc V$%y
+" yank code block
+nnoremap <leader>yp V$%y
+" delete code block
+nnoremap <leader>dp V^%d
 
 set langmap=აa,იi,ბb,წw,ფf,ოo,OO,AA,II,პp,PP,ეe,რr,ღR,ყy,უu,დd,DD,გg,GG,ჰh,ჯj,კk,ლl,ხx,ცc,ჩC,ვv,VV
 " list buffers
@@ -320,9 +333,9 @@ nmap <leader>vt :call OpenTerminal(0, 0, 0)<cr>
 nmap <leader>run :call ExecuteCurrentFile(1, 1)<cr>
 nmap <leader>vrun :call ExecuteCurrentFile(0, 1)<cr>
 
-" set shell=fish
-set shell=/bin/bash
+" set shell=/bin/bash
 " should be placed at the top
+set shell=fish
 " if &shell =~# 'fish$'
 "     set shell=sh
 " endif

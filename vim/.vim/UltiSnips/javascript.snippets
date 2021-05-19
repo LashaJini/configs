@@ -119,10 +119,8 @@ snippet req "Snippet: CommonJS require"
 const ${1:http} = require("${2:$1}")
 endsnippet
 
-snippet mex "Snippet: CommonJS module exports"
-module.exports = {
-	${1}
-}
+snippet mes "Snippet: CommonJS module exports"
+module.exports = ${1}
 endsnippet
 
 snippet const "Snippet: const"
@@ -146,13 +144,7 @@ const ${1:curry} = (${2}) => ${3}
 endsnippet
 
 snippet h "Snippet: function expression with braces"
-const ${1:handler} = (${2}) => {
-	${0}
-}
-endsnippet
-
-snippet ah "Snippet: async function expression with braces"
-const ${1:handler} = async (${2}) => {
+const ${1:handler} = ${2} (${3}) => {
 	${0}
 }
 endsnippet
@@ -271,49 +263,25 @@ endsnippet
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 snippet get "Snippet: express get function"
-${1:app}.get('/${2}', (request, response, ${3:next}) => {
-	${4}
-});
-endsnippet
-
-snippet aget "Snippet: async express get function"
-${1:app}.get('/${2}', async (request, response, ${3:next}) => {
-	${4}
+${1:app}.get('/${2}', ${3} (request, response, ${4:next}) => {
+	${5}
 });
 endsnippet
 
 snippet del "Snippet: express delete function"
-${1:app}.delete('/${2}', (request, response, ${3:next}) => {
-	${4}
-});
-endsnippet
-
-snippet adel "Snippet: async express delete function"
-${1:app}.delete('/${2}', async (request, response, ${3:next}) => {
-	${4}
+${1:app}.delete('/${2}', ${3} (request, response, ${4:next}) => {
+	${5}
 });
 endsnippet
 
 snippet post "Snippet: express post function"
-${1:app}.post('/${2}', (request, response, ${3:next}) => {
-	${4}
-});
-endsnippet
-
-snippet apost "Snippet: async express post function"
-${1:app}.post('/${2}', async (request, response, ${3:next}) => {
-	${4}
+${1:app}.post('/${2}', ${3} (request, response, ${4:next}) => {
+	${5}
 });
 endsnippet
 
 snippet put "Snippet: express put function"
-${1:app}.put('/${2}/:id', (request, response, ${3:next}) => {
-	${4}
-});
-endsnippet
-
-snippet aput "Snippet: async express put function"
-${1:app}.put('/${2}/:id', async (request, response, ${3:next}) => {
+${1:app}.put('/:id', ${2} (request, response, ${3:next}) => {
 	${4}
 });
 endsnippet
@@ -337,8 +305,8 @@ endsnippet
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 snippet ball "Snippet: beforeAll"
-beforeAll(() => {
-	${1}
+beforeAll(${1} function() {
+	${2}
 })
 endsnippet
 
@@ -362,26 +330,14 @@ describe("${1}", function () {
 endsnippet
 
 snippet test "Snippet: test"
-test("${1}", function () {
-	${2}
+test("${1}", ${2} function () {
+	${3}
 })
 endsnippet
 
 snippet it "Snippet: it"
-it("${1}", function () {
-	${2}
-})
-endsnippet
-
-snippet atest "Snippet: async test"
-test("${1}", async function () {
-	${2}
-})
-endsnippet
-
-snippet ait "Snippet: async it"
-it("${1}", async function () {
-	${2}
+it("${1}", ${2} function () {
+	${3}
 })
 endsnippet
 
@@ -392,8 +348,8 @@ it.only("${1}", function() {
 endsnippet
 
 snippet beach "Snippet: beforeEach"
-beforeEach(function () {
-	${1}
+beforeEach(${1} function () {
+	${2}
 })
 endsnippet
 
