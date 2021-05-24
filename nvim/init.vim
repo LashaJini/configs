@@ -43,6 +43,11 @@ Plug 'rust-lang/rust.vim'
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 call plug#end()
 
 set encoding=UTF-8
