@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/plugged')
 " Plug 'jaredgorski/spacecamp'
-" Plug 'puremourning/vimspector'
-" Plug 'dbeniamine/cheat.sh-vim'
 " Plug 'junegunn/vader.vim'
 " Plug 'morhetz/gruvbox'
 " Plug 'https://github.com/joshdick/onedark.vim'
@@ -11,6 +9,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'https://github.com/tpope/vim-markdown.git'
 " Plug 'dense-analysis/ale'
 
+Plug 'dbeniamine/cheat.sh-vim'
+Plug 'puremourning/vimspector'
 Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
@@ -411,4 +411,365 @@ inoremap [{<CR> [{<CR>}]<Esc>ko
 map <c-@>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost ~/.vimrc source ~/.vimrc
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open NERDTree no matter what
+"autocmd vimenter * NERDTree
+
+" Open NERDTree automatically when vim starts if no files were specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | else | :call Maybe()  |  endif
+" fun! Maybe()
+"   NERDTree
+"   :wincmd l
+" endfun
+
+" move cursor on left window instead of NERDTree window
+" autocmd vimenter * wincmd l
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+" refresh nerdtre
+nmap <Leader>r<cr> :NERDTreeFocus<cr>R<c-w><c-p>
+
+"let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden=0
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeWinSize=35
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>nb :NERDTreeFromBookmark<Space>
+map <leader>nf :NERDTreeFind<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => lightline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste', 'spell' ],
+      \             [ 'fugitive', 'readonly', 'filename' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'cwd', 'fileformat', 'fileencoding', 'filetype', 'mea' ] ] 
+      \ },
+      \ 'inactive': {
+      \ 'left': [ [ 'filename' ] ],
+      \ 'right': [ [ 'lineinfo' ],
+      \            [ 'cwd' ] ] 
+      \ },
+      \
+      \ 'component':{
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+      \   'modified': '%#ModifiedColor#%{LightlineModified()}',
+      \   'fugitive': '%{exists("*FugitiveHead")?FugitiveHead():""}'
+      \ },
+			\ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'fugitive': '(exists("*FugitiveHead") && ""!=FugitiveHead())'
+      \ },
+      \ 'component_function':{
+      \   'mea': 'DateNow',
+      \   'cwd': 'CWD',
+      \   'filename': 'LightLineFilename'
+      \ },
+      \ }
+" let g:lightline.mode_map = {
+" 		    \ 'n' : 'N',
+" 		    \ 'i' : 'I',
+" 		    \ 'R' : 'R',
+" 		    \ 'v' : 'V',
+" 		    \ 'V' : 'V-L',
+" 		    \ '\<C-v>': 'V-B',
+" 		    \ 'c' : 'C',
+" 		    \ 's' : 'S',
+" 		    \ 'S' : 'S-L',
+" 		    \ '\<C-s>': 'S-B',
+" 		    \ 't': 'T',
+" 		    \ }
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ],
+    \ 'right': [ [ 'close' ] ] }
+
+function! DateNow()
+  return strftime('%d/%m/%y %H:%M:%S')
+endfunction
+
+function! CWD()
+  return ""
+  " return getcwd()
+endfunction
+
+function! LightLineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+function! LightlineModified()
+  let map = { 'V': 'n', "\<C-v>": 'n', 's': 'n', 'v': 'n', "\<C-s>": 'n', 'c': 'n', 'R': 'n'}
+  let mode = get(map, mode()[0], mode()[0])
+  let bgcolor = {'n': [240, '#585858'], 'i': [31, '#0087af']}
+  let color = get(bgcolor, mode, bgcolor.n)
+  exe printf('hi ModifiedColor ctermfg=196 ctermbg=%d guifg=#ff0000 guibg=%s term=bold cterm=bold',
+  \ color[0], color[1])
+  return &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. You need to change this to something else than
+" <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SimpylFold
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fold/unfold
+nmap <leader>f za
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring=0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => emmet
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" key C-y
+" enable only for css & html
+" let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" let g:user_emmet_leader_key='<C-q>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ctrlp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" <C-p>
+" can search with acronyms as well
+" <C-t> open in new tab
+" <C-v> <C-s> split
+" let g:ctrlp_user_command = ['.git/', 'node_modules/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" ignore files in .gitigonre
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Coc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :CocInstall coc-tsserver
+" :CocInstall coc-deno
+" :CocInstall coc-prettier " js,ts,css,json
+" :CocCommand deno.types
+" :CocRestart
+"
+" Disabling
+" :CocList extensions
+" <tab> d 
+" reset vim
+
+" Give more space for displaying messages.
+" set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                               \: '\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>'
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" let g:coc_config_home='/root/github/configs/vim/.vim/coc'
+let g:coc_config_home='/root/109149/configs/vim/.vim/coc'
+
+nmap <leader>coc<cr> :CocRestart<cr>
+nmap <leader>cocd<cr> :CocDisable<cr>
+nmap <leader>coce<cr> :CocEnable<cr>
+
+" run :Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" will be automatically installed and updated by Coc.
+" let g:coc_global_extensions = [
+"   \ 'coc-tsserver'
+"   \ ]
+
+function! CloseCocWindows()
+  call coc#float#close_all()
+endfunction
+
+function! DoCocActions()
+  call CloseCocWindows()
+  execute "normal \<Plug>(coc-codeaction)"
+endfunction
+
+nmap <leader>cocq :call CloseCocWindows()<cr>
+
+" Diagnostics
+nnoremap <silent> <leader>cocd :<C-u>CocList diagnostics<cr>
+" nmap <silent> <leader>cocd <Plug>(coc-diagnostic-info)
+
+" Fuzzy search symbols
+nnoremap <silent> <leader>cocs :<C-u>CocList -I symbols<cr>
+
+" Perform code actions on symbol where cursor stands (importing ...)
+" nmap <leader>co <Plug>(coc-codeaction)
+nmap <leader>co<cr> :call DoCocActions()<cr>
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" kill coc
+nmap <leader>cock :call coc#rpc#kill()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-maximizer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" defaults:
+nnoremap <silent><F3> :MaximizerToggle<CR>
+vnoremap <silent><F3> :MaximizerToggle<CR>gv
+inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => cheat.sh-vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" <leader>KK - open in pager
+" <leader>KB - open in new window
+" <leader>KR - replace question with answer
+" <leader>Kp - paste answer below question
+" <leader>C  - toggle commets
+let g:CheatSheetFrameworks = {
+                \ 'python' : ['python', 'django', ],
+                \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
+                \}
+let g:CheatSheetFrameworkDetectionMethods = {
+                \'django' : { 'type' : 'file', 'value' : 'manage.py' },
+                \'jquery' : {'type' :'search', 'value' : 'jquery.*\.js'},
+                \'node': {'type': 'file', 'value': '*\.js'}
+                \}
+" gives ?Q to the server if = 0
+let g:CheatSheetShowCommentsByDefault=1
+" Default query mode
+" 0 => buffer
+" 1 => replace (do not use or you might loose some lines of code)
+" 2 => pager
+" 3 => paste after query
+" 4 => paste before query
+" let g:CheatSheetDefaultMode=0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vimspector
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = ['vscode-cpptools', 'CodeLLDB', 'vscode-node-debug2', 'debugger-for-chrome', 'vscode-bash-debug', 'debugpy', 'vscode-go' ]
+
+fun GoToWindow(id)
+  call win_gotoid(a:id)
+  " MaximizerToggle
+endfun
+
+nnoremap <leader>dd :call vimspector#Launch()<cr>
+nnoremap <leader>dc<cr> :call GoToWindow(g:vimspector_session_windows.code)<cr>
+nnoremap <leader>dt :call GoToWindow(g:vimspector_session_windows.tagpage)<cr>
+nnoremap <leader>dv<cr> :call GoToWindow(g:vimspector_session_windows.variables)<cr>
+nnoremap <leader>dw :call GoToWindow(g:vimspector_session_windows.watches)<cr>
+nnoremap <leader>ds :call GoToWindow(g:vimspector_session_windows.stack_trace)<cr>
+nnoremap <leader>do :call GoToWindow(g:vimspector_session_windows.output)<cr>
+nnoremap <leader>de<cr> :call vimspector#Reset()<cr>
+
+nnoremap <leader>dvclb :call vimspector#CleanLineBreakpoint()<cr>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>dn :call vimspector#Continue()<cr>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
