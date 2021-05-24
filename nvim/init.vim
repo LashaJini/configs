@@ -180,15 +180,23 @@ endfun
 fun! OpenTerminal(horizontal, shell, args)
   if a:horizontal
     if !a:shell
-      ter ++rows=12
+      execute "12sp"
+      wincmd j
+      terminal
+      startinsert
     else
-      execute "ter ++shell ++rows=12 " . a:args
+      execute "12sp"
+      wincmd j
+      execute "terminal " . a:args
     endif
   else
     if !a:shell
-      vert ter
+      vsp
+      terminal
+      startinsert
     else
-      execute "vert ter ++shell " . a:args
+      vsp
+      execute "terminal " . a:args
     endif
     wincmd x
     wincmd l
