@@ -1,3 +1,7 @@
+snippet eq "Snippet: assert_eq!(...)"
+assert_eq!(${1:result}, ${2:expected}); 
+endsnippet
+
 snippet doclang "Snippet: codeblock in docs"
 \`\`\`${1}
 /// # fn main() {
@@ -27,7 +31,7 @@ std::cmp::min(${1}, ${2})
 endsnippet
 
 snippet ar "Snippet: |...|"
-|${1:_}| ${2}
+|${1:_}| {${2}}
 endsnippet
 
 snippet ordering "Snippet: std::cmp::Ordering"

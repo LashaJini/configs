@@ -203,36 +203,6 @@ endif
 " let g:netrw_winsize=25
 " let g:ctrlp_use_caching=0
 
-" sed -n l
-execute "set <M-1>=\e1"
-execute "set <M-2>=\e2"
-execute "set <M-3>=\e3"
-execute "set <M-4>=\e4"
-execute "set <M-5>=\e5"
-execute "set <M-6>=\e6"
-execute "set <M-7>=\e7"
-execute "set <M-8>=\e8"
-execute "set <M-9>=\e9"
-nnoremap <M-1> 1gt :call CD()<cr>
-nnoremap <M-2> 2gt :call CD()<cr>
-nnoremap <M-3> 3gt :call CD()<cr>
-nnoremap <M-4> 4gt :call CD()<cr>
-nnoremap <M-5> 5gt :call CD()<cr>
-nnoremap <M-6> 6gt :call CD()<cr>
-nnoremap <M-7> 7gt :call CD()<cr>
-nnoremap <M-8> 8gt :call CD()<cr>
-nnoremap <M-9> 9gt :call CD()<cr>
-
-inoremap <M-1> <Esc>1gt :call CD()<cr>
-inoremap <M-2> <Esc>2gt :call CD()<cr>
-inoremap <M-3> <Esc>3gt :call CD()<cr>
-inoremap <M-4> <Esc>4gt :call CD()<cr>
-inoremap <M-5> <Esc>5gt :call CD()<cr>
-inoremap <M-6> <Esc>6gt :call CD()<cr>
-inoremap <M-7> <Esc>7gt :call CD()<cr>
-inoremap <M-8> <Esc>8gt :call CD()<cr>
-inoremap <M-9> <Esc>9gt :call CD()<cr>
-
 "nnoremap <C-@> i
 "inoremap <C-@> <Esc>
 "vnoremap <C-@> <Esc>
@@ -283,14 +253,14 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 " reset the cursor on start (for older versions of vim, usually not required)
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
+" augroup myCmds
+" au!
+" autocmd VimEnter * silent !echo -ne "\e[2 q"
+" augroup END
 
 " toggle cursorline 
-" autocmd InsertEnter,InsertLeave * set cul!
-set cul
+autocmd InsertEnter,InsertLeave * set cul!
+" set cul
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -776,8 +746,8 @@ let g:UltiSnipsEditSplit="vertical"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" \ 'rust': ['analyzer', 'cargo', 'rls', 'rustc'],
 let g:ale_linters = {
-    \ 'rust': ['analyzer', 'cargo', 'rls', 'rustc'],
     \ 'javascript': ['eslint']
     \ }
 let g:ale_fixers = {
@@ -804,7 +774,7 @@ let g:ale_lint_on_save=0
 let g:ale_keep_list_window_open = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => SimplyFold
+" => SimpylFold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fold/unfold
 nmap <leader>f za
