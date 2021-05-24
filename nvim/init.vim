@@ -62,7 +62,7 @@ set smartindent
 set nowrap
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set incsearch
 set hlsearch
@@ -211,7 +211,7 @@ nnoremap <leader>vdeno :w<cr>:call OpenTerminal(0, 1, 'deno run %')<cr>
 nnoremap <leader>node :w<cr>:call OpenTerminal(1, 1, 'node %')<cr>
 nnoremap <leader>vnode :w<cr>:call OpenTerminal(0, 1, 'node %')<cr>
 " tsc
-nnoremap <leader>tsc :w<cr>:silent exec "!tsc %"<cr>
+" nnoremap <leader>tsc :w<cr>:silent exec "!tsc %"<cr>
 nnoremap <leader>tr :w<cr>:call TranspileJS()<cr>
 " nnoremap <leader>tr :w<cr>:call Something | redraw<cr>
 function! TranspileJS()
@@ -369,7 +369,7 @@ endif
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+" map <leader>ss :setlocal spell!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -784,3 +784,10 @@ nnoremap <leader>dn :call vimspector#Continue()<cr>
 nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => telescope
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>tf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>tg <cmd>lua require('telescope.builtin').live_grep()<cr>
