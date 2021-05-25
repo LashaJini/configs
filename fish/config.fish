@@ -33,7 +33,7 @@ set -x PATH $DENO_INSTALL/bin:$PATH
 
 # fuzzy find directories and cd into it
 bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf); commandline -f repaint'
-# fuzzy find directories, cd into it and start tmux session
+# fuzzy find directory, cd into it and start tmux session
 # bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && tmux_session.sh'
 # bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
 bind -M insert \ct ct
@@ -45,6 +45,11 @@ function ct
   commandline -f repaint && \
   tmux_session.sh $name
 end
+# fuzzy find wallpaper images and set as bg
+bind -M insert \cw 'fdfind --exclude node_modules --exclude target -t f . ~/images/wallpapers/ | fzf --bind "enter:execute(feh --bg-scale {})"'
+
+# fuzzy find file and nvim it
+bind -M insert \cn 'fdfind --exclude node_modules --exclude target -t f . "/root/109149" | fzf --bind "enter:execute(nvim {})"'
 
 # bind -M insert "ç" fzf-cd-widget
 

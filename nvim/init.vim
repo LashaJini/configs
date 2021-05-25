@@ -7,8 +7,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 " Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'https://github.com/tpope/vim-markdown.git'
-" Plug 'dense-analysis/ale'
 
+Plug 'dense-analysis/ale'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'puremourning/vimspector'
 Plug 'https://github.com/ap/vim-css-color.git'
@@ -326,6 +326,8 @@ map <leader>T <C-W>T
 map <leader>= <C-W>=
 nnoremap <silent> + :resize +1<cr>
 nnoremap <silent> - :resize -1<cr>
+nnoremap <silent> } :vert resize +1<cr>
+nnoremap <silent> { :vert resize -1<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :call CD()<cr>
@@ -799,3 +801,33 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>tf <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>tg <cmd>lua require('telescope.builtin').live_grep()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" \ 'rust': ['analyzer', 'cargo', 'rls', 'rustc'],
+let g:ale_linters = {
+    \ 'javascript': ['eslint']
+    \ }
+let g:ale_fixers = {
+    \ '*': ['trim_whitespace'],
+    \ 'javascript': ['prettier-eslint', 'eslint', 'importjs'],
+    \ }
+let g:ale_linters_ignore = {'typescript': ['eslint', 'standard', 'tslint', 'tsserver', 'typecheck', 'xo']}
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+" map <leader>af :ALEFindReferences<cr>
+" map <leader>ag :ALEGoToDefinition<cr>
+map <leader>ap :ALEPrevious<cr>
+map <leader>an :ALENext<cr>
+map <leader>ad :ALEDetail<cr>
+"ALEGoToTypeDefinition
+let g:ale_completion_enabled=0
+" let g:ale_typescript_tsserver_use_global=1
+" let g:ale_typescript_tsserver_config_path='~/github/configs/vim/coc/tsconfig.json'
+let g:ale_pattern_options = {'\.ts*$': {'ale_enabled': 0}}
+let g:ale_open_list=0
+let g:ale_lint_on_save=0
+let g:ale_keep_list_window_open = 0
