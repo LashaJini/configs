@@ -38,9 +38,11 @@ bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/
 # bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
 bind -M insert \ct ct
 function ct 
-  cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && \
-  read -l -P "Session name: " name
-  commandline -f repaint
+  set dirname (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf)
+  count $dirname > 0 && \
+  cd $dirname && \
+  read -l -P "Session name: " name && \
+  commandline -f repaint && \
   tmux_session.sh $name
 end
 
