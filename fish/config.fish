@@ -32,33 +32,25 @@ set -x PATH $DENO_INSTALL/bin:$PATH
 # --bind "enter:execute(less {})"
 
 # fuzzy find directories and cd into it
-bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/senior/" | fzf); commandline -f repaint'
+bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf); commandline -f repaint'
 # fuzzy find directories, cd into it and start tmux session
-# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/senior/" | fzf) && tmux_session.sh'
-# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/senior/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
-# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/senior/" | fzf) && yes "" | tmux_session.sh'
-bind -M insert \ct t
-
-function t 
-  while true
-    read -l -P 'Do you want to continue? [y/N] ' confirm
-
-    switch $confirm
-      case Y y
-        return 0
-      case '' N n
-        return 1
-    end
-  end
+# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && tmux_session.sh'
+# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
+bind -M insert \ct ct
+function ct 
+  cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && \
+  read -l -P "Session name: " name
+  commandline -f repaint
+  tmux_session.sh $name
 end
 
 # bind -M insert "ç" fzf-cd-widget
 
 set -x FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 --pointer="->" --color=16'
-# set -x FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/senior/mit"'
+# set -x FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/mit"'
 
 # if not set --query FZF_ALT_C_COMMAND
-#   set --global --export FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/senior/mit"'
+#   set --global --export FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/mit"'
 # end
 
 # if not set --query FZF_DEFAULT_OPTS
