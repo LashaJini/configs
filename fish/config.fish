@@ -3,6 +3,8 @@ set -g -x fish_greeting ''
 
 # exit on <c-d>
 bind \cd 'exit'
+# fuzzy search on <c-f> (-M cuz vi binding is enabled)
+bind -M insert \cf 'fzf --height=20% --border=rounded --margin=1,1,1,1 --pointer="->" --color=bw'
 
 # vi stuff
 # <c-c> clears input now
