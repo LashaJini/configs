@@ -140,9 +140,9 @@ nmap <leader>vt :call OpenTerminal(0, 0, 0)<cr>
 nmap <leader>run :call ExecuteCurrentFile(1, 1)<cr>
 nmap <leader>vrun :call ExecuteCurrentFile(0, 1)<cr>
 
-set shell=/bin/bash
+" set shell=/bin/bash
 " should be placed at the top
-" set shell=fish
+set shell=fish
 " if &shell =~# 'fish$'
 "     set shell=sh
 " endif
