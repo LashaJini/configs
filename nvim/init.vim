@@ -5,9 +5,9 @@ call plug#begin('~/.vim/plugged')
 " Plug 'https://github.com/joshdick/onedark.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
-" Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'https://github.com/tpope/vim-markdown.git'
 
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'dense-analysis/ale'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'puremourning/vimspector'
