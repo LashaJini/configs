@@ -330,7 +330,7 @@ nnoremap <silent> } :vert resize +1<cr>
 nnoremap <silent> { :vert resize -1<cr>
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :call CD()<cr>
+nnoremap <leader>cd :call CD()<cr>
 
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
