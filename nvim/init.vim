@@ -106,10 +106,14 @@ set cul
 " Fast saving
 nnoremap <leader>w :w<cr>
 nnoremap <leader>aw :wa<cr>
+nnoremap <leader>წ :w<cr>
+nnoremap <leader>აწ :wa<cr>
 " Fast quit
 " nmap <leader>q :q<cr>
 nnoremap <leader>q :bd<cr>
 nnoremap <leader>aq :qa<cr>
+nnoremap <leader>ქ :bd<cr>
+nnoremap <leader>აქ :qa<cr>
 
 " Yank to x register
 nnoremap <leader>x "xyy
@@ -126,6 +130,13 @@ nnoremap <leader>yp V$%y
 nnoremap <leader>dp V^%d
 
 set langmap=აa,იi,ბb,წw,ფf,ოo,OO,AA,II,პp,PP,ეe,რr,ღR,ყy,უu,დd,DD,გg,GG,ჰh,ჯj,კk,ლl,ხx,ცc,ჩC,ვv,VV
+
+nnoremap გქ gq
+vnoremap გქ gq
+
+inoremap „ `
+inoremap “ ~
+
 " list buffers
 " nmap <leader>ls  :ls<cr>
 
