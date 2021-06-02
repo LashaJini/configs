@@ -127,11 +127,11 @@ nnoremap <leader>aq :qa<cr>
 nnoremap <leader>ქ :bd<cr>
 nnoremap <leader>აქ :qa<cr>
 
-" Yank to x register
-nnoremap <leader>x "xyy
-vnoremap <leader>x "xy
+" Yank to ; register
+nnoremap <leader>u "uyy
+vnoremap <leader>u "uy
 " Paste x register
-nnoremap <leader>xp "xp
+nnoremap <leader>up "up
 " Append to x register
 nnoremap <leader>X "Xyy
 vnoremap <leader>X "Xy
@@ -141,10 +141,15 @@ nnoremap <leader>yp V$%y
 " delete code block
 nnoremap <leader>dp V^%d
 
-set langmap=აa,იi,ბb,წw,ფf,ოo,OO,AA,II,პp,PP,ეe,რr,ღR,ყy,უu,დd,DD,გg,GG,ჰh,ჯj,კk,ლl,ხx,ცc,ჩC,ვv,VV
+set langmap=აa,იi,ბb,წw,ფf,ოo,OO,AA,II,პp,PP,ეe,რr,ღR,ყy,უu,დd,DD,გg,GG,ჰh,ჯj,კk,ლl,ნn,NN,ხx,ცc,ჩC,ვv,VV,სs
 
 nnoremap გქ gq
 vnoremap გქ gq
+
+nnoremap დტ dt
+vnoremap დფ df
+nnoremap ცტ ct
+vnoremap ცფ cf
 
 inoremap „ `
 inoremap “ ~
