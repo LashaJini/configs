@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 
+Plug 'digitaltoad/vim-pug'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'dense-analysis/ale'
 Plug 'dbeniamine/cheat.sh-vim'
