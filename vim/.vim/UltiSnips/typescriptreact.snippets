@@ -1,4 +1,34 @@
-extends javascript
+# extends javascript
+snippet catch "Snippet: .catch((...) => ...)"
+.catch((${1}) => ${2})${0}
+endsnippet
+
+snippet then "Snippet: .then((...) => ...)"
+.then((${1}) => ${2})${0}
+endsnippet
+
+snippet dc "Snippet: data-cy={...}"
+data-cy={process.env.NODE_ENV === "development" ? "${1}" : undefined}${0}
+endsnippet
+
+snippet h "Snippet: const h = () => "
+const ${1:handler} = ${2} (${3}) => ${0}
+endsnippet
+
+snippet ar "Snippet: () =>"
+(${1}) => ${0}
+endsnippet
+
+snippet doc "Snippet: simple doc comment"
+/**
+ * ${1}
+ */
+endsnippet
+
+snippet dest "Snippet: const {...} = ..."
+const {${1}} = ${2}
+endsnippet
+
 snippet bc "Add block comment"
 /** $1 */
 endsnippet
@@ -16,12 +46,22 @@ snippet docs "This is a doc snippet"
  */
 endsnippet
 
+snippet cer "Console error snippet"
+console.error(${1:text})${0}
+endsnippet	
+
 snippet clog "Console log snippet"
-console.log(${1:text})
+console.log(${1:text})${0}
 endsnippet	
 
 snippet ec "Snippet: export const"
 export const ${1:NAME} = "${2}";
+endsnippet
+
+snippet styled "Snippet: styled.div``"
+const ${1:Div} = styled.${2:div}\`
+${0}
+\`
 endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -29,6 +69,12 @@ endsnippet
 # React Stuff
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+snippet effect "Snippet: React.useEffect"
+React.useEffect(() => {
+	${1}
+}, [${2}])
+endsnippet
 
 snippet rc "Create React class Component"
 import React, { Component } from 'react';
@@ -85,18 +131,6 @@ class `!v expand('%:t:r')` extends Component<$1> {
 export default `!v expand('%:t:r')`;
 endsnippet	
 
-snippet rf "Create React function Component"
-import React from 'react';
-
-const `!v expand('%:t:r')` = (${1}) => {
-	return (
-		${2:<></>}
-	)
-}
-
-export default `!v expand('%:t:r')`;
-endsnippet
-
 snippet rnf "Snippet: create react named function component"
 import React from 'react';
 
@@ -109,24 +143,30 @@ const ${1:`!v expand('%:t:r')`} = (${2}) => {
 export default $1;
 endsnippet
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# React Stuff: @material-ui
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+snippet state "Snippet: React.useState"
+const [$1, set${1/.*/\u$0/}] = React.useState${2}(${3:""})
+endsnippet
 
-snippet @btn "Create @material-ui button component"
+snippet rf "Create React function Component"
 import React from 'react';
-import Button from '@material-ui/core/Button';
 
 const `!v expand('%:t:r')` = (${1}) => {
 	return (
-		<Button ${2}>
-			${3:Why Hello There}
-		</Button>
+		${2:<></>}
 	)
 }
 
 export default `!v expand('%:t:r')`;
+endsnippet
 
+snippet ref "Snippet: React.useRef"
+const ${1} = React.useRef(${2})
+endsnippet
+
+snippet callback "Snippet: React.useCallback"
+const ${1} = React.useCallback((${2}) => ${3}, [${4}])
+endsnippet
+
+snippet use "Snippet: use(SOMETHING) format"
+const ${1} = use${2}(${3});
 endsnippet

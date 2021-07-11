@@ -1,3 +1,49 @@
+snippet ct "Snippet: console.time"
+console.time${1}(${2})${0}
+endsnippet
+
+snippet o "Snippet: const obj = { ... }"
+const ${1:response} = { ${0} }
+endsnippet
+
+snippet ael "Snippet: addEventListener"
+${1:window}.addEventListener("${2:resize}", function(${3:event}) {
+	${0}
+})
+endsnippet
+
+snippet cn "Snippet: const ... = new ..."
+const ${1:response} = new ${0}
+endsnippet
+
+snippet c "Snippet: const ... = ..."
+const ${1:response} = ${0}
+endsnippet
+
+snippet dqs "Snippet: document.querySelector"
+document.querySelector(${2})${0}
+endsnippet
+
+snippet div "Snippet: divider"
+/*******************************************************************************
+ *
+ * ${0}
+ *
+ ******************************************************************************/
+endsnippet
+
+snippet max "Snippet: Math.max"
+Math.max(${1}, ${2})${0}
+endsnippet
+
+snippet min "Snippet: Math.min"
+Math.min(${1}, ${2})${0}
+endsnippet
+
+snippet dc "Snippet: data-cy={...}"
+data-cy={process.env.NODE_ENV === "development" ? "${1}" : undefined}${0}
+endsnippet
+
 snippet styled "Snippet: const NAME = styled.div``"
 const ${1:Div} = styled.${2:div}\`
 ${3}
@@ -396,8 +442,89 @@ endsnippet
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-snippet 3 "Snippet: new THREE...."
-new THREE.${2:Mesh}(${3})
+snippet 3 "Snippet: THREE...."
+THREE.${2:Mesh}(${3})
+endsnippet
+
+snippet 3setup "Snippet: THREE js setup"
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import * as dat from "dat.gui";
+
+document.querySelector("body").style.cssText = \`
+  margin:0;
+  padding:0;
+\`;
+
+export default function init() {
+  const canvas = document.querySelector(".scene");
+  const size = { width: window.innerWidth, height: window.innerHeight };
+  const gui = new dat.GUI({ width: 300, closed: true });
+
+  window.addEventListener("resize", () => {
+    size.width = window.innerWidth;
+    size.height = window.innerHeight;
+
+    camera.aspect = size.width / size.height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(size.width, size.height);
+  });
+
+  const scene = new THREE.Scene();
+  window.scene = scene;
+
+  const axes = new THREE.AxesHelper(2);
+  scene.add(axes);
+
+  //////////////
+  //  Camera  //
+  //////////////
+
+  const fov = 45;
+  const aspectRatio = size.width / size.height;
+  const camera = new THREE.PerspectiveCamera(fov, aspectRatio, 0.01, 100);
+  camera.position.set(-3, 3, 3);
+  scene.add(camera);
+
+  ////////////////
+  //  Controls  //
+  ////////////////
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+
+  //////////////
+  //  Meshes  //
+  //////////////
+
+  scene.add(
+    new THREE.Mesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      new THREE.MeshBasicMaterial()
+    )
+  );
+
+  ////////////////
+  //  Renderer  //
+  ////////////////
+
+  const renderer = new THREE.WebGLRenderer({ canvas });
+  renderer.setSize(size.width, size.height);
+
+  let lastTime = performance.now();
+  const tick = (currTime) => {
+    const delta = currTime - lastTime;
+    if (delta >= 16) {
+      controls.update();
+      renderer.render(scene, camera);
+      lastTime = currTime;
+    }
+
+    requestAnimationFrame(tick);
+  };
+  tick();
+}
 endsnippet
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

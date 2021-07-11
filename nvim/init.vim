@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'digitaltoad/vim-pug'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'puremourning/vimspector'
 Plug 'https://github.com/ap/vim-css-color.git'
@@ -53,11 +53,11 @@ Plug 'rust-lang/rust.vim'
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+"" telescope
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-telescope/telescope-fzy-native.nvim'
 call plug#end()
 
 " syntax on
@@ -355,8 +355,8 @@ map <leader>T <C-W>T
 map <leader>= <C-W>=
 nnoremap <silent> + :resize +1<cr>
 nnoremap <silent> - :resize -1<cr>
-nnoremap <silent> } :vert resize +1<cr>
-nnoremap <silent> { :vert resize -1<cr>
+" nnoremap <silent> } :vert resize +1<cr>
+" nnoremap <silent> { :vert resize -1<cr>
 
 " Switch CWD to the directory of the open buffer
 nnoremap <leader>cd :call CD()<cr>
@@ -717,9 +717,19 @@ command! -nargs=0 Format :call CocAction('format')
 " let g:coc_config_home='/root/github/configs/vim/.vim/coc'
 let g:coc_config_home='/root/109149/configs/vim/.vim/coc'
 
-nmap <leader>coc<cr> :CocRestart<cr>
-nmap <leader>cocd<cr> :CocDisable<cr>
-nmap <leader>coce<cr> :CocEnable<cr>
+" function! ToggleTSServer()
+"   let active = CocAction('activeExtension', 'coc-tsserver')
+"   if active
+"     call CocAction('deactivateExtension', 'coc-tsserver')
+"   else
+"     call CocAction('activeExtension', 'coc-tsserver')
+"   endif
+" endfunction
+" nnoremap <leader>coc<cr> :call ToggleTSServer()<cr>
+
+nmap <leader>cocr<cr> :CocRestart<cr>
+" nmap <leader>cocd<cr> :CocDisable<cr>
+" nmap <leader>coce<cr> :CocEnable<cr>
 
 " run :Prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -842,9 +852,9 @@ nnoremap <leader>tg <cmd>lua require('telescope.builtin').live_grep()<cr>
 " => ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " \ 'rust': ['analyzer', 'cargo', 'rls', 'rustc'],
-let g:ale_linters = {
-    \ 'javascript': ['eslint']
-    \ }
+" let g:ale_linters = {
+"     \ 'typescript': ['eslint']
+"     \ }
 let g:ale_fixers = {
     \ '*': ['trim_whitespace'],
     \ 'javascript': ['prettier-eslint', 'eslint', 'importjs'],
