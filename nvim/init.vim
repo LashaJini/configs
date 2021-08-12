@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 
+Plug 'tikhomirov/vim-glsl'
 Plug 'digitaltoad/vim-pug'
 Plug 'maxmellon/vim-jsx-pretty'
 "Plug 'dense-analysis/ale'
@@ -731,10 +732,17 @@ nmap <leader>cocr<cr> :CocRestart<cr>
 " nmap <leader>cocd<cr> :CocDisable<cr>
 " nmap <leader>coce<cr> :CocEnable<cr>
 
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 " run :Prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vnoremap <leader>wf :Prettier<cr>:w<cr>
-nnoremap <leader>wf :Prettier<cr>:w<cr>
+" >.<
+function! FormatAndSave()
+  :Prettier
+  :w
+endfunction
+vnoremap <leader>wf :call FormatAndSave()<cr>
+nnoremap <leader>wf :call FormatAndSave()<cr>
 
 " will be automatically installed and updated by Coc.
 " let g:coc_global_extensions = [
