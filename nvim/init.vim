@@ -59,6 +59,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'nvim-lua/plenary.nvim'
 "Plug 'nvim-telescope/telescope.nvim'
 "Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 " syntax on
@@ -187,6 +189,8 @@ fun! ExecuteCurrentFile(horizontal, shell)
     let executed = printf('gcc %% -o %s -O -g -Wall && ./%s && rm %s', filename, filename, filename)
   elseif extension == 'cpp'
     let executed = printf('gcc %% -xc++ -lstdc++ -shared-libgcc -O -g -Wall -o %s && ./%s && rm %s', filename, filename, filename)
+  elseif extension == 'rb'
+    let executed = printf('ruby %%')
   elseif extension == 'js'
     let executed = printf('node %%')
   elseif extension == 'ts'
@@ -689,10 +693,10 @@ nmap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -1001,3 +1005,50 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'j
 " => vim-jsx-pretty
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:vim_jsx_pretty_template_tags = []
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-jsx-pretty
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  --buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  --buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  --buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+local servers = { 'rust_analyzer', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+EOF

@@ -64,3 +64,5 @@ set -x FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 
 #   set --global --export FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 --pointer="->" --color=16'
 # end
 
+# rbenv
+status --is-interactive; and source (rbenv init -|psub)
