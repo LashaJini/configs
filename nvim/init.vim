@@ -86,7 +86,7 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set encoding=utf-8
 
-colorscheme monokai
+" colorscheme monokai
 set background=light
 " transparent
 " highlight Normal ctermbg=none
@@ -573,7 +573,8 @@ function! CWD()
 endfunction
 
 function! LightLineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  " let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let filename = expand('%:p:h:t') !=# '' ? expand('%:p:h:t').'/'.expand('%:t') : '[No Name]'
   let modified = &modified ? ' +' : ''
   return filename . modified
 endfunction
