@@ -746,8 +746,10 @@ function! FormatAndSave()
   :Prettier
   :w
 endfunction
-vnoremap <leader>wf :call FormatAndSave()<cr>
-nnoremap <leader>wf :call FormatAndSave()<cr>
+" vnoremap <leader>wf :call FormatAndSave()
+" nnoremap <leader>wf :call FormatAndSave()
+vnoremap <leader>wf :Prettier<cr>:w<cr>
+nnoremap <leader>wf :Prettier<cr>:w<cr>
 
 " will be automatically installed and updated by Coc.
 " let g:coc_global_extensions = [
