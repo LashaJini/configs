@@ -4,7 +4,7 @@ autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 call plug#begin('~/.vim/plugged')
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " Plug 'https://github.com/joshdick/onedark.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
@@ -87,7 +87,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 set encoding=utf-8
 
 " colorscheme monokai
-set background=light
+colorscheme gruvbox
+set background=dark
 " transparent
 " highlight Normal ctermbg=none
 " highlight NonText ctermbg=none
