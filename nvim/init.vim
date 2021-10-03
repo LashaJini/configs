@@ -86,9 +86,10 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set encoding=utf-8
 
-" colorscheme monokai
-colorscheme gruvbox
-set background=dark
+colorscheme monokai
+set background=light
+" colorscheme gruvbox
+" set background=dark
 " transparent
 " highlight Normal ctermbg=none
 " highlight NonText ctermbg=none
