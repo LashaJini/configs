@@ -723,7 +723,7 @@ command! -nargs=0 Format :call CocAction('format')
 " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " let g:coc_config_home='/root/github/configs/vim/.vim/coc'
-let g:coc_config_home='/root/109149/configs/vim/.vim/coc'
+" let g:coc_config_home='/root/109149/configs/vim/.vim/coc'
 
 " function! ToggleTSServer()
 "   let active = CocAction('activeExtension', 'coc-tsserver')
