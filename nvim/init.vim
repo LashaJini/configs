@@ -2,6 +2,7 @@
 autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 
 call plug#begin('~/.vim/plugged')
+Plug 'APZelos/blamer.nvim'
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
 Plug 'morhetz/gruvbox'
@@ -773,7 +774,7 @@ nmap <leader>cocq :call CloseCocWindows()<cr>
 nnoremap <silent> <leader>cocd :<C-u>CocList diagnostics<cr>
 " nmap <silent> <leader>cocd <Plug>(coc-diagnostic-info)
 
-" Fuzzy search symbols
+" TODO: ignore node_modules (?). Fuzzy search symbols
 nnoremap <silent> <leader>cocs :<C-u>CocList -I symbols<cr>
 
 " Perform code actions on symbol where cursor stands (importing ...)
@@ -1057,3 +1058,10 @@ end
 --  }
 --end
 EOF
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => blamer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:blamer_enabled = 0
+let g:blamer_delay = 50
+let g:blamer_show_in_insert_modes = 0
