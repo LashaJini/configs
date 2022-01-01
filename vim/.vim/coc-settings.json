@@ -1,4 +1,5 @@
 {
   "python.pythonPath": "/usr/bin/python3",
-  "coc.preferences.jumpCommand": "tabe"
+  "coc.preferences.jumpCommand": "tabe",
+  "rust-analyzer.server.path": "~/.local/bin/rust-analyzer"
 }

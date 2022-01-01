@@ -6,6 +6,7 @@ Plug 'APZelos/blamer.nvim'
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
 Plug 'morhetz/gruvbox'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'https://github.com/joshdick/onedark.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
@@ -87,9 +88,11 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set encoding=utf-8
 
-colorscheme monokai
-set background=light
-" colorscheme gruvbox
+" colorscheme monokai
+" colorscheme molokai
+" colorscheme onehalfdark
+colorscheme gruvbox
+set background=dark
 " set background=dark
 " transparent
 " highlight Normal ctermbg=none
@@ -121,6 +124,36 @@ set cul
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" sed -n l
+execute "set <M-1>=\e1"
+execute "set <M-2>=\e2"
+execute "set <M-3>=\e3"
+execute "set <M-4>=\e4"
+execute "set <M-5>=\e5"
+execute "set <M-6>=\e6"
+execute "set <M-7>=\e7"
+execute "set <M-8>=\e8"
+execute "set <M-9>=\e9"
+nnoremap <M-1> 1gt :call CD()<cr>
+nnoremap <M-2> 2gt :call CD()<cr>
+nnoremap <M-3> 3gt :call CD()<cr>
+nnoremap <M-4> 4gt :call CD()<cr>
+nnoremap <M-5> 5gt :call CD()<cr>
+nnoremap <M-6> 6gt :call CD()<cr>
+nnoremap <M-7> 7gt :call CD()<cr>
+nnoremap <M-8> 8gt :call CD()<cr>
+nnoremap <M-9> 9gt :call CD()<cr>
+
+inoremap <M-1> <Esc>1gt :call CD()<cr>
+inoremap <M-2> <Esc>2gt :call CD()<cr>
+inoremap <M-3> <Esc>3gt :call CD()<cr>
+inoremap <M-4> <Esc>4gt :call CD()<cr>
+inoremap <M-5> <Esc>5gt :call CD()<cr>
+inoremap <M-6> <Esc>6gt :call CD()<cr>
+inoremap <M-7> <Esc>7gt :call CD()<cr>
+inoremap <M-8> <Esc>8gt :call CD()<cr>
+inoremap <M-9> <Esc>9gt :call CD()<cr>
 
 " Fast saving
 nnoremap <leader>w :w<cr>
@@ -197,7 +230,8 @@ fun! ExecuteCurrentFile(horizontal, shell)
   elseif extension == 'js'
     let executed = printf('node %%')
   elseif extension == 'ts'
-    let executed = printf('deno run %%')
+    " let executed = printf('deno run %%')
+    let executed = printf('npx ts-node %%')
   elseif extension == 'py'
     let executed = printf('python3 %%')
   elseif extension == 'sh'
@@ -1065,3 +1099,8 @@ EOF
 let g:blamer_enabled = 0
 let g:blamer_delay = 50
 let g:blamer_show_in_insert_modes = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => rust-lang/rust.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rustfmt_autosave = 1
