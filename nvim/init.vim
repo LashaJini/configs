@@ -67,6 +67,7 @@ call plug#end()
 
 " syntax on
 
+set mouse=a
 set encoding=UTF-8
 
 set showcmd
