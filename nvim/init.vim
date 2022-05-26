@@ -1,7 +1,8 @@
 " syntax on
 autocmd BufNewFile,BufRead *.mdx set filetype=markdown
+au BufNewFile,BufRead Jenkinsfile setf groovy
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'APZelos/blamer.nvim'
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
@@ -127,15 +128,6 @@ set cul
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " sed -n l
-execute "set <M-1>=\e1"
-execute "set <M-2>=\e2"
-execute "set <M-3>=\e3"
-execute "set <M-4>=\e4"
-execute "set <M-5>=\e5"
-execute "set <M-6>=\e6"
-execute "set <M-7>=\e7"
-execute "set <M-8>=\e8"
-execute "set <M-9>=\e9"
 nnoremap <M-1> 1gt :call CD()<cr>
 nnoremap <M-2> 2gt :call CD()<cr>
 nnoremap <M-3> 3gt :call CD()<cr>
