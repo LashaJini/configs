@@ -51,6 +51,8 @@ mkdir ~/.config/fish -p
 rm -rf /home/$USER/.local/share/omf
 curl https://raw.githubusercontent.com/LashaJini/configs/master/fish/config.fish > ~/.config/fish/config.fish
 
+sudo chsh -s /usr/bin/fish
+
 # curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
 # omf install nvm
