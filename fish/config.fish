@@ -32,13 +32,13 @@ set -x PATH $DENO_INSTALL/bin:$PATH
 # --bind "enter:execute(less {})"
 
 # fuzzy find directories and cd into it
-bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf); commandline -f repaint'
+bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/home/$USER/" | fzf); commandline -f repaint'
 # fuzzy find directory, cd into it and start tmux session
-# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && tmux_session.sh'
-# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
+# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/home/$USER/" | fzf) && tmux_session.sh'
+# bind -M insert \ct 'cd (fdfind -t d . --exclude node_modules --exclude target "/home/$USER/" | fzf) && yes "" | tmux_session.sh; commandline -f repaint'
 bind -M insert \ct ct
 function ct 
-  set dirname (fdfind -t d . --exclude node_modules --exclude target "/root/109149/" | fzf)
+  set dirname (fdfind -t d . --exclude node_modules --exclude target "/home/$USER/" | fzf)
   count $dirname > 0 && \
   cd $dirname && \
   read -l -P "Session name: " name && \
@@ -49,15 +49,15 @@ end
 bind -M insert \cw 'fdfind --exclude node_modules --exclude target -t f . ~/images/wallpapers/ | fzf --bind "enter:execute(feh --bg-scale {})"'
 
 # fuzzy find file and nvim it
-bind -M insert \cn 'fdfind --exclude node_modules --exclude target -t f . "/root/109149" | fzf --bind "enter:execute(nvim {})"'
+bind -M insert \cn 'fdfind --exclude node_modules --exclude target -t f . "/home/$USER" | fzf --bind "enter:execute(nvim {})"'
 
 # bind -M insert "ç" fzf-cd-widget
 
 set -x FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 --pointer="->" --color=16'
-# set -x FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/mit"'
+# set -x FZF_ALT_C_COMMAND 'fd -t d . "/home/$USER/mit"'
 
 # if not set --query FZF_ALT_C_COMMAND
-#   set --global --export FZF_ALT_C_COMMAND 'fd -t d . "/root/109149/mit"'
+#   set --global --export FZF_ALT_C_COMMAND 'fd -t d . "/home/$USER/mit"'
 # end
 
 # if not set --query FZF_DEFAULT_OPTS
