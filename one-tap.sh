@@ -26,6 +26,8 @@ sudo apt-get install -y \
 	rsync \
   brightnessctl \
   nautilus \
+  py3status \
+  fonts-font-awesome \
 	curl
 
 # CLONE IT SILLY
@@ -108,6 +110,7 @@ sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
 # Misc
 
 - https://www.kali.org/docs/general-use/enabling-root/
+- https://confluence.jaytaala.com/display/TKB/My+Manjaro+i3+setup
 - https://forums.gentoo.org/viewtopic-p-8667066.html?sid=7143695658a5406b75f89500bc3346e8
 - Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
 
