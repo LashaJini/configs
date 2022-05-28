@@ -25,6 +25,7 @@ sudo apt-get install -y \
 	alsa-firwmare-loaders \
 	rsync \
   brightnessctl \
+  nautilus \
 	curl
 
 # CLONE IT SILLY
