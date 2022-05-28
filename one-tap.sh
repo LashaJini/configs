@@ -117,3 +117,14 @@ sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
 - `dmesg`
 - `/var/log/messages`
 - sound problems. Look for: hda, sound, audio
+
+## nvm
+
+```
+omf install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+nvm install <version>
+nvm alias default <version>
+nvm use default
+```
