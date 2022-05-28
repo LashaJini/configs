@@ -20,6 +20,11 @@ sudo apt-get install -y \
 	fd-find \
 	jq \
 	rbenv \
+	pavucontrol \
+	alsa-utils \
+	alsa-firwmare-loaders \
+	rsync \
+  brightnessctl \
 	curl
 
 # CLONE IT SILLY
@@ -28,7 +33,7 @@ sudo apt-get install -y \
 
 mkdir ~/.config/i3 -p
 
-curl https://raw.githubusercontent.com/LashaJini/configs/master/i3/i3.config > ~/.config/i3/i3.config
+curl https://raw.githubusercontent.com/LashaJini/configs/master/i3/i3.config > ~/.config/i3/config
 curl https://raw.githubusercontent.com/LashaJini/configs/master/i3/i3status.conf > ~/.config/i3/i3status.conf
 
 ## nvim
@@ -51,7 +56,7 @@ mkdir ~/.config/fish -p
 rm -rf /home/$USER/.local/share/omf
 curl https://raw.githubusercontent.com/LashaJini/configs/master/fish/config.fish > ~/.config/fish/config.fish
 
-chsh -s /usr/bin/fish $USER
+sudo chsh -s /usr/bin/fish
 
 # curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
@@ -98,3 +103,13 @@ curl https://raw.githubusercontent.com/LashaJini/scripts/master/jq_curl.sh > ~/w
 chmod +x ~/ws/scripts/jq_curl.sh
 
 sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
+
+# Misc
+
+- https://www.kali.org/docs/general-use/enabling-root/
+- https://forums.gentoo.org/viewtopic-p-8667066.html?sid=7143695658a5406b75f89500bc3346e8
+- Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
+
+- `dmesg`
+- `/var/log/messages`
+- sound problems. Look for: hda, sound, audio
