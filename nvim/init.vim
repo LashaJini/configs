@@ -54,6 +54,8 @@ Plug 'maksimr/vim-jsbeautify'
 " Rust
 Plug 'rust-lang/rust.vim'
 
+Plug 'tomlion/vim-solidity'
+
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -701,6 +703,17 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+" coc popup menu
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1):
+    \ <SID>check_back_space() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -1024,7 +1037,7 @@ let g:mkdp_filetypes = ['markdown']
 let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
                         \ 'enter': { 'shift': 1 },
                         \ 'links': { 'external': { 'enable': 1 } },
-                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 0 },
                         \ 'fold': { 'enable': 1 } }
 let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
                                        " plugin which unfortunately interferes with mkdx list indentation.
@@ -1097,3 +1110,4 @@ let g:blamer_show_in_insert_modes = 0
 " => rust-lang/rust.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rustfmt_autosave = 1
+
