@@ -1,15 +1,22 @@
 " syntax on
 autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 au BufNewFile,BufRead Jenkinsfile setf groovy
+" au BufRead,BufNewFile *.py set expandtab
 
 call plug#begin('~/.config/nvim/plugged')
+" Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Plug 'Mofiqul/vscode.nvim'
+Plug 'jupyter-vim/jupyter-vim'
+Plug 'tomasiser/vim-code-dark'
+Plug 'github/copilot.vim'
 Plug 'APZelos/blamer.nvim'
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'https://github.com/joshdick/onedark.vim'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 
 Plug 'tikhomirov/vim-glsl'
@@ -65,7 +72,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'nvim-telescope/telescope.nvim'
 "Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
 call plug#end()
 
 " syntax on
@@ -96,8 +105,10 @@ set encoding=utf-8
 " colorscheme molokai
 " colorscheme onehalfdark
 colorscheme gruvbox
+" colorscheme codedark
 set background=dark
-" set background=dark
+" let g:codedark_italics=1
+" let g:codedark_transparent=1
 " transparent
 " highlight Normal ctermbg=none
 " highlight NonText ctermbg=none
@@ -343,6 +354,9 @@ vmap <leader>pd "_dP
 " 
 nmap do ddO
 nmap dfi f}i<cr><Esc>O
+
+nnoremap dvo :DiffviewOpen<cr>
+nnoremap dvc :DiffviewClose<cr>
 
 " syntax highlit for .ejs
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -1055,49 +1069,49 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'j
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-jsx-pretty
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-lua << EOF
-local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+" lua << EOF
+" local nvim_lsp = require('lspconfig')
+" local on_attach = function(client, bufnr)
+"   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+"   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+"   -- Enable completion triggered by <c-x><c-o>
+"   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+"   -- Mappings.
+"   local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  --buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  --buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  --buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  --buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+"   -- See `:help vim.lsp.*` for documentation on any of the below functions
+"   --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+"   --buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+"   --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+"   --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+"   --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+"   --buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+"   --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+"   --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+"   --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+"   --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+"   --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+"   --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+"   --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+"   --buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+"   --buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+"   --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+"   --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-end
+" end
 
---local servers = { 'rust_analyzer', 'tsserver' }
---for _, lsp in ipairs(servers) do
---  nvim_lsp[lsp].setup {
---    on_attach = on_attach,
---    flags = {
---      debounce_text_changes = 150,
---    }
---  }
---end
-EOF
+" --local servers = { 'rust_analyzer', 'tsserver' }
+" --for _, lsp in ipairs(servers) do
+" --  nvim_lsp[lsp].setup {
+" --    on_attach = on_attach,
+" --    flags = {
+" --      debounce_text_changes = 150,
+" --    }
+" --  }
+" --end
+" EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => blamer
@@ -1110,4 +1124,14 @@ let g:blamer_show_in_insert_modes = 0
 " => rust-lang/rust.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rustfmt_autosave = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors n stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set t_Co=256
+" set termguicolors
+" highlight Visual guibg=#434C5E
+" highlight Search guifg=#C678DD guibg=#4C566A
+" highlight TabLineSel guifg=#282C34 guibg=#61AFEF
+" highlight CursorLineNr guifg=#61AFEF
 
