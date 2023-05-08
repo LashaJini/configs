@@ -1137,3 +1137,9 @@ let g:rustfmt_autosave = 1
 " highlight TabLineSel guifg=#282C34 guibg=#61AFEF
 " highlight CursorLineNr guifg=#61AFEF
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => python-mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:pymode_rope_goto_definition_bind = ''
+let g:pymode_doc_bind = ''
+let g:pymode_lint_cwindow = 0
