@@ -21,7 +21,8 @@ end
 starship init fish | source
 
 set -x DENO_INSTALL ~/.deno
-set -x PATH $DENO_INSTALL/bin:$PATH
+set -x GOPATH ~/go
+set -x PATH $DENO_INSTALL/bin:$GOPATH/bin:$PATH
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # ====> fzf

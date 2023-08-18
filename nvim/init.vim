@@ -1,15 +1,11 @@
 " syntax on
 autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 au BufNewFile,BufRead Jenkinsfile setf groovy
-" au BufRead,BufNewFile *.py set expandtab
 
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Plug 'Mofiqul/vscode.nvim'
-Plug 'jupyter-vim/jupyter-vim'
-Plug 'tomasiser/vim-code-dark'
 Plug 'github/copilot.vim'
+Plug 'sohkai/syntastic-local-solhint'
 Plug 'APZelos/blamer.nvim'
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
@@ -24,7 +20,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'maxmellon/vim-jsx-pretty'
 "Plug 'dense-analysis/ale'
 Plug 'dbeniamine/cheat.sh-vim'
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
@@ -33,6 +29,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'https://github.com/tpope/vim-markdown'
 " pretty cool
 Plug 'SidOfc/mkdx'
+Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " replace with nvim-treesitter when there will be stable release
 " Plug 'sheerun/vim-polyglot'
@@ -72,9 +71,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'nvim-telescope/telescope.nvim'
 "Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-" Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'sindrets/diffview.nvim'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 " syntax on
@@ -105,16 +102,17 @@ set encoding=utf-8
 " colorscheme molokai
 " colorscheme onehalfdark
 colorscheme gruvbox
-" colorscheme codedark
-set background=dark
-" let g:codedark_italics=1
-" let g:codedark_transparent=1
+" colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+" set background=light
+" set background=dark
+set bg=dark
 " transparent
 " highlight Normal ctermbg=none
 " highlight NonText ctermbg=none
 " or, if you want to keep this settings after changing the colorscheme:
 " au ColorScheme * hi Normal ctermbg=none guibg=none
 " au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+nnoremap <leader>bg :let &bg=(&bg=='light'?'dark':'light')<cr>
 
 let mapleader=" "
 
@@ -233,6 +231,8 @@ fun! ExecuteCurrentFile(horizontal, shell)
     let executed = printf('gcc %% -xc++ -lstdc++ -shared-libgcc -O -g -Wall -o %s && ./%s && rm %s', filename, filename, filename)
   elseif extension == 'rb'
     let executed = printf('ruby %%')
+  elseif extension == 'go'
+    let executed = printf('go run %%')
   elseif extension == 'js'
     let executed = printf('node %%')
   elseif extension == 'ts'
@@ -354,9 +354,6 @@ vmap <leader>pd "_dP
 " 
 nmap do ddO
 nmap dfi f}i<cr><Esc>O
-
-nnoremap dvo :DiffviewOpen<cr>
-nnoremap dvc :DiffviewClose<cr>
 
 " syntax highlit for .ejs
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -807,8 +804,19 @@ endfunction
 " nnoremap <leader>wf :call FormatAndSave()
 autocmd FileType javascript vnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
 autocmd FileType javascript nnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
+autocmd FileType json       vnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
+autocmd FileType json       nnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
 autocmd FileType python     vnoremap <buffer> <leader>wf :PymodeLintAuto<cr>:w<cr>
 autocmd FileType python     nnoremap <buffer> <leader>wf :PymodeLintAuto<cr>:w<cr>
+
+" :GoImports
+autocmd FileType go         vnoremap <buffer> <leader>wf :GoFmt<cr>:w<cr>
+autocmd FileType go         nnoremap <buffer> <leader>wf :GoFmt<cr>:w<cr>
+
+autocmd FileType javascriptreact vnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
+autocmd FileType javascriptreact nnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
+autocmd FileType typescriptreact vnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
+autocmd FileType typescriptreact nnoremap <buffer> <leader>wf :Prettier<cr>:w<cr>
 
 " will be automatically installed and updated by Coc.
 " let g:coc_global_extensions = [
@@ -886,34 +894,34 @@ let g:CheatSheetShowCommentsByDefault=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimspector
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_install_gadgets = ['vscode-cpptools', 'CodeLLDB', 'vscode-node-debug2', 'debugger-for-chrome', 'vscode-bash-debug', 'debugpy', 'vscode-go' ]
+" let g:vimspector_enable_mappings = 'HUMAN'
+" let g:vimspector_install_gadgets = ['vscode-cpptools', 'CodeLLDB', 'vscode-node-debug2', 'debugger-for-chrome', 'vscode-bash-debug', 'debugpy', 'vscode-go' ]
 
-fun GoToWindow(id)
-  call win_gotoid(a:id)
-  " MaximizerToggle
-endfun
+" fun GoToWindow(id)
+"   call win_gotoid(a:id)
+"   " MaximizerToggle
+" endfun
 
-nnoremap <leader>dd :call vimspector#Launch()<cr>
-nnoremap <leader>dc<cr> :call GoToWindow(g:vimspector_session_windows.code)<cr>
-nnoremap <leader>dt :call GoToWindow(g:vimspector_session_windows.tagpage)<cr>
-nnoremap <leader>dv<cr> :call GoToWindow(g:vimspector_session_windows.variables)<cr>
-nnoremap <leader>dw :call GoToWindow(g:vimspector_session_windows.watches)<cr>
-nnoremap <leader>ds :call GoToWindow(g:vimspector_session_windows.stack_trace)<cr>
-nnoremap <leader>do :call GoToWindow(g:vimspector_session_windows.output)<cr>
-nnoremap <leader>de<cr> :call vimspector#Reset()<cr>
+" nnoremap <leader>dd :call vimspector#Launch()<cr>
+" nnoremap <leader>dc<cr> :call GoToWindow(g:vimspector_session_windows.code)<cr>
+" nnoremap <leader>dt :call GoToWindow(g:vimspector_session_windows.tagpage)<cr>
+" nnoremap <leader>dv<cr> :call GoToWindow(g:vimspector_session_windows.variables)<cr>
+" nnoremap <leader>dw :call GoToWindow(g:vimspector_session_windows.watches)<cr>
+" nnoremap <leader>ds :call GoToWindow(g:vimspector_session_windows.stack_trace)<cr>
+" nnoremap <leader>do :call GoToWindow(g:vimspector_session_windows.output)<cr>
+" nnoremap <leader>de<cr> :call vimspector#Reset()<cr>
 
-nnoremap <leader>dvclb :call vimspector#CleanLineBreakpoint()<cr>
+" nnoremap <leader>dvclb :call vimspector#CleanLineBreakpoint()<cr>
 
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>dn :call vimspector#Continue()<cr>
+" nmap <leader>dl <Plug>VimspectorStepInto
+" nmap <leader>dj <Plug>VimspectorStepOver
+" nmap <leader>dk <Plug>VimspectorStepOut
+" nmap <leader>d_ <Plug>VimspectorRestart
+" nnoremap <leader>dn :call vimspector#Continue()<cr>
 
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+" nmap <leader>drc <Plug>VimspectorRunToCursor
+" nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+" nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1071,49 +1079,49 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'j
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-jsx-pretty
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" lua << EOF
-" local nvim_lsp = require('lspconfig')
-" local on_attach = function(client, bufnr)
-"   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-"   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+lua << EOF
+--local nvim_lsp = require('lspconfig')
+--local on_attach = function(client, bufnr)
+  --local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  --local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-"   -- Enable completion triggered by <c-x><c-o>
-"   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Enable completion triggered by <c-x><c-o>
+  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-"   -- Mappings.
-"   local opts = { noremap=true, silent=true }
+  -- Mappings.
+  --local opts = { noremap=true, silent=true }
 
-"   -- See `:help vim.lsp.*` for documentation on any of the below functions
-"   --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-"   --buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-"   --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-"   --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-"   --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-"   --buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-"   --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-"   --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-"   --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-"   --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-"   --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-"   --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-"   --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-"   --buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-"   --buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-"   --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-"   --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  --buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  --buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  --buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  --buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-" end
+--end
 
-" --local servers = { 'rust_analyzer', 'tsserver' }
-" --for _, lsp in ipairs(servers) do
-" --  nvim_lsp[lsp].setup {
-" --    on_attach = on_attach,
-" --    flags = {
-" --      debounce_text_changes = 150,
-" --    }
-" --  }
-" --end
-" EOF
+--local servers = { 'rust_analyzer', 'tsserver' }
+--for _, lsp in ipairs(servers) do
+--  nvim_lsp[lsp].setup {
+--    on_attach = on_attach,
+--    flags = {
+--      debounce_text_changes = 150,
+--    }
+--  }
+--end
+EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => blamer
@@ -1127,15 +1135,6 @@ let g:blamer_show_in_insert_modes = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rustfmt_autosave = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors n stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set t_Co=256
-" set termguicolors
-" highlight Visual guibg=#434C5E
-" highlight Search guifg=#C678DD guibg=#4C566A
-" highlight TabLineSel guifg=#282C34 guibg=#61AFEF
-" highlight CursorLineNr guifg=#61AFEF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python-mode
