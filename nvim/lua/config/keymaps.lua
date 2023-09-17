@@ -17,6 +17,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "<leader>bg", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
+map("n", "s", "xi", { desc = "x + i", remap = true })
 
 map("n", "<leader>q", ":bd<cr>", { desc = "Close", remap = true })
 map("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
@@ -34,6 +35,7 @@ map("n", "<leader>k", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("n", "<leader>l", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
 map("n", "<leader>=", "<C-W>=", { desc = "Resize windows" })
 
+-- TODO:
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
@@ -99,7 +101,68 @@ end, { desc = "Terminal (cwd)" })
 -- map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 -- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
+-- spectre
+map("n", "<F1><cr>", function()
+  require("spectre").open()
+end, { desc = "Replace in files (Spectre)" })
+map("n", "<F1>w", function()
+  require("spectre").open_visual({ select_word = true })
+end, { desc = "Replace current word in files (Spectre)" })
+map("v", "<F1>w", function()
+  require("spectre").open_visual()
+end, { desc = "Replace selected word in files (Spectre)" })
+
+-- flash
+map("n", "<F4><cr>", function()
+  require("flash").jump()
+end, { desc = "Flash" })
+
 -- -- highlights under cursor
 -- if vim.fn.has("nvim-0.9.0") == 1 then
 --   map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 -- end
+
+-- telescope
+local builtin = require("telescope.builtin")
+map("n", "<F2><cr>", builtin.find_files, { desc = "Find files (telescope)" })
+map("n", "<F2>g", builtin.live_grep, { desc = "Live grep (telescope)" })
+
+-- nvim-lspconfig
+map("n", "<leader>D", vim.diagnostic.open_float)
+map("n", "<leader>dn", vim.diagnostic.goto_next)
+map("n", "<leader>dp", vim.diagnostic.goto_prev)
+map("n", "<leader>dl", vim.diagnostic.setloclist)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
+    map("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Goto Declaration" })
+    map("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "Goto Definition" })
+    map("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "Check References" })
+    map("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover definition" })
+    map("n", "<space>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
+    map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code action" })
+    map("n", "<space>fmt", function()
+      vim.lsp.buf.format({ async = true })
+    end, { buffer = ev.buf, desc = "Format" })
+  end,
+})
+
+-- treesitter
+-- :TSInstall <language>
+
+-- notify
+-- :Telescope notify
+map("n", "<leader>no", function()
+  require("notify").dismiss({ silent = true, pending = true })
+end, { desc = "Dismiss all Notifications" })
+
+local luasnip = require("luasnip")
+-- luasnip
+map("i", "<A-e>", function()
+  if luasnip.expandable() then
+    luasnip.expand()
+    -- else
+    --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+  end
+end, { desc = "Expand snippet", silent = true })
