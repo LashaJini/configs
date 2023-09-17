@@ -7,6 +7,9 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'github/copilot.vim'
 Plug 'sohkai/syntastic-local-solhint'
 Plug 'APZelos/blamer.nvim'
+
+Plug 'sebdah/vim-delve'
+
 " Plug 'jaredgorski/spacecamp'
 " Plug 'junegunn/vader.vim'
 Plug 'morhetz/gruvbox'
@@ -637,9 +640,9 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration. You need to change this to something else than
 " <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<M-l>"
+let g:UltiSnipsJumpForwardTrigger="<M-j>"
+let g:UltiSnipsJumpBackwardTrigger="<M-b>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -1142,3 +1145,15 @@ let g:rustfmt_autosave = 1
 let g:pymode_rope_goto_definition_bind = ''
 let g:pymode_doc_bind = ''
 let g:pymode_lint_cwindow = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => copilot
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:copilot_filetypes = {
+"       \ '*': v:false,
+"       \ 'python': v:true,
+"       \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => coc-go
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :silent call CocAction('format')
