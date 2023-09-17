@@ -52,6 +52,15 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map({ "n", "i" }, "<A-1>", "<Esc>1gt", { desc = "First Tab" })
+map({ "n", "i" }, "<A-2>", "<Esc>2gt", { desc = "Second Tab" })
+map({ "n", "i" }, "<A-3>", "<Esc>3gt", { desc = "3rd Tab" })
+map({ "n", "i" }, "<A-4>", "<Esc>4gt", { desc = "4th Tab" })
+map({ "n", "i" }, "<A-5>", "<Esc>5gt", { desc = "5th Tab" })
+map({ "n", "i" }, "<A-6>", "<Esc>6gt", { desc = "6th Tab" })
+map({ "n", "i" }, "<A-7>", "<Esc>7gt", { desc = "7th Tab" })
+map({ "n", "i" }, "<A-8>", "<Esc>8gt", { desc = "8th Tab" })
+map({ "n", "i" }, "<A-9>", "<Esc>9gt", { desc = "9th Tab" })
 
 -- -- buffers
 -- if Util.has("bufferline.nvim") then
