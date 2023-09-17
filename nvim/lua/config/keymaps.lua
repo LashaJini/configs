@@ -16,7 +16,9 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("n", "<leader>q", ":q<cr>", { desc = "Close", remap = true })
+map("n", "<leader>bg", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
+
+map("n", "<leader>q", ":bd<cr>", { desc = "Close", remap = true })
 map("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
 map("n", "<leader>w", ":w<cr>", { desc = "Save", remap = true })
 map("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
@@ -30,6 +32,7 @@ map("n", "<leader>h", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
 map("n", "<leader>j", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
 map("n", "<leader>k", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("n", "<leader>l", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+map("n", "<leader>=", "<C-W>=", { desc = "Resize windows" })
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -62,21 +65,21 @@ map({ "n", "i" }, "<A-7>", "<Esc>7gt", { desc = "7th Tab" })
 map({ "n", "i" }, "<A-8>", "<Esc>8gt", { desc = "8th Tab" })
 map({ "n", "i" }, "<A-9>", "<Esc>9gt", { desc = "9th Tab" })
 
--- -- buffers
--- if Util.has("bufferline.nvim") then
---   map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
---   map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
---   map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
---   map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
--- else
---   map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
---   map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
---   map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
---   map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
--- end
--- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- buffers
+if Util.has("bufferline.nvim") then
+  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+else
+  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+end
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
---
+
 -- floating terminal
 local lazyterm = function()
   Util.float_term(nil, { cwd = Util.get_root() })
