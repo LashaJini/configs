@@ -167,5 +167,7 @@ map("i", "<A-e>", function()
 end, { desc = "Expand snippet", silent = true })
 
 -- ufo
-map("n", "zO", require("ufo").openAllFolds, { desc = "Open all folds" })
-map("n", "zC", require("ufo").closeAllFolds, { desc = "Close all folds" })
+map("n", "<leader>fO", require("ufo").openAllFolds, { desc = "Open all folds" })
+map("n", "<leader>fC", require("ufo").closeAllFolds, { desc = "Close all folds" })
+map("n", "<leader>fc", "<cmd>:foldclose<cr>", { desc = "Close fold" })
+map("n", "<leader>fo", "<cmd>:foldopen<cr>", { desc = "Open fold" })

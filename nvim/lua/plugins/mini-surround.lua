@@ -21,12 +21,12 @@ return {
     end,
     opts = {
       mappings = {
-        add = "sa", -- Add surrounding in Normal and Visual modes
-        delete = "sd", -- Delete surrounding
+        add = "<A-s>a", -- Add surrounding in Normal and Visual modes
+        delete = "<A-s>d", -- Delete surrounding
         -- find = "gzf", -- Find surrounding (to the right)
         -- find_left = "gzF", -- Find surrounding (to the left)
         -- highlight = "gzh", -- Highlight surrounding
-        replace = "sr", -- Replace surrounding
+        replace = "<A-s>r", -- Replace surrounding
         -- update_n_lines = "gzn", -- Update `n_lines`
       },
     },
