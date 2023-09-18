@@ -166,6 +166,7 @@ map("i", "<A-e>", function()
     --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
   end
 end, { desc = "Expand snippet", silent = true })
+map("n", "<F12><cr>", require("luasnip.loaders").edit_snippet_files, { desc = "Edit Snippets" })
 
 -- ufo
 map("n", "<leader>fO", require("ufo").openAllFolds, { desc = "Open all folds" })
