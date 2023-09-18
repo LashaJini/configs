@@ -13,4 +13,3 @@ snippet : "shorthand var"
 
 snippet ginjson "gin json return"
 	ctx.JSON(${1:http.StatusBadRequest}, gin.H{${2:"error"}: ${3:err.Error()}})
-	return
