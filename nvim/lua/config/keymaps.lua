@@ -83,13 +83,13 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- floating terminal
-local lazyterm = function()
-  Util.float_term(nil, { cwd = Util.get_root() })
-end
-map("n", "<leader>t", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<leader>T", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
+-- local lazyterm = function()
+--   Util.float_term(nil, { cwd = Util.get_root() })
+-- end
+map("n", "<leader>t", "<cmd>FloatermNew --height=0.6 --width=0.6 --title=Jini<cr>", { desc = "Terminal (root dir)" })
+-- map("n", "<leader>T", function()
+--   Util.float_term()
+-- end, { desc = "Terminal (cwd)" })
 -- map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
 -- map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
