@@ -19,7 +19,8 @@ end
 map("n", "<leader>bg", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
 map("n", "s", "xi", { desc = "x + i", remap = true })
 
-map("n", "<leader>q", ":bd<cr>", { desc = "Close", remap = true })
+map("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
+map("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
 map("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
 map("n", "<leader>w", ":w<cr>", { desc = "Save", remap = true })
 map("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
