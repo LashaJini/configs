@@ -170,6 +170,7 @@ map("n", "<F12><cr>", require("luasnip.loaders").edit_snippet_files, { desc = "E
 
 -- ufo
 local fold_state = true -- Start with folds open
+local all_fold_state = false
 
 -- Function to toggle folds
 function ToggleFolds()
@@ -181,6 +182,14 @@ function ToggleFolds()
   fold_state = not fold_state
 end
 
-map("n", "<leader>fO", require("ufo").openAllFolds, { desc = "Open all folds" })
-map("n", "<leader>fC", require("ufo").closeAllFolds, { desc = "Close all folds" })
+function ToggleAllFolds()
+  if all_fold_state then
+    require("ufo").closeAllFolds()
+  else
+    require("ufo").openAllFolds()
+  end
+  all_fold_state = not all_fold_state
+end
+
+map("n", "<leader>fO", "<cmd>lua ToggleAllFolds()<cr>", { desc = "Toggle all folds" })
 map("n", "<leader>fo", "<cmd>lua ToggleFolds()<cr>", { desc = "Toggle fold" })
