@@ -128,10 +128,11 @@ map("n", "<F2><cr>", builtin.find_files, { desc = "Find files (telescope)" })
 map("n", "<F2>g", builtin.live_grep, { desc = "Live grep (telescope)" })
 
 -- nvim-lspconfig
-map("n", "<leader>D", vim.diagnostic.open_float)
-map("n", "<leader>dn", vim.diagnostic.goto_next)
-map("n", "<leader>dp", vim.diagnostic.goto_prev)
-map("n", "<leader>dl", vim.diagnostic.setloclist)
+map("n", "<leader>D", vim.diagnostic.open_float, { desc = "Open diagnostics" })
+map("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Set loclist" })
+map("n", "<leader>do", vim.lsp.buf.code_action, { desc = "Code action" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),

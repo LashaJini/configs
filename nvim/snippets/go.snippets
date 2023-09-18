@@ -10,3 +10,7 @@ snippet err: "if err:"
 
 snippet : "shorthand var"
   ${1} := ${2}
+
+snippet ginjson "gin json return"
+	ctx.JSON(${1:http.StatusBadRequest}, gin.H{${2:"error"}: ${3:err.Error()}})
+	return
