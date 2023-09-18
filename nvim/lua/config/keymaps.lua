@@ -35,7 +35,6 @@ map("n", "<leader>k", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("n", "<leader>l", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
 map("n", "<leader>=", "<C-W>=", { desc = "Resize windows" })
 
--- TODO:
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
@@ -166,3 +165,7 @@ map("i", "<A-e>", function()
     --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
   end
 end, { desc = "Expand snippet", silent = true })
+
+-- ufo
+map("n", "zO", require("ufo").openAllFolds, { desc = "Open all folds" })
+map("n", "zC", require("ufo").closeAllFolds, { desc = "Close all folds" })
