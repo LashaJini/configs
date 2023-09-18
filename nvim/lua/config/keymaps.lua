@@ -169,7 +169,18 @@ end, { desc = "Expand snippet", silent = true })
 map("n", "<F12><cr>", require("luasnip.loaders").edit_snippet_files, { desc = "Edit Snippets" })
 
 -- ufo
+local fold_state = true -- Start with folds open
+
+-- Function to toggle folds
+function ToggleFolds()
+  if fold_state then
+    vim.cmd(":foldclose")
+  else
+    vim.cmd(":foldopen")
+  end
+  fold_state = not fold_state
+end
+
 map("n", "<leader>fO", require("ufo").openAllFolds, { desc = "Open all folds" })
 map("n", "<leader>fC", require("ufo").closeAllFolds, { desc = "Close all folds" })
-map("n", "<leader>fc", "<cmd>:foldclose<cr>", { desc = "Close fold" })
-map("n", "<leader>fo", "<cmd>:foldopen<cr>", { desc = "Open fold" })
+map("n", "<leader>fo", "<cmd>lua ToggleFolds()<cr>", { desc = "Toggle fold" })
