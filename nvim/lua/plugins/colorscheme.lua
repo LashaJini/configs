@@ -8,6 +8,17 @@ return {
     end,
   },
 
+  -- -- tokyonight
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = function()
+  --     vim.o.background = "dark" -- or "light" for light mode
+  --     vim.cmd([[colorscheme tokyonight]])
+  --   end,
+  -- },
+
   -- -- kanagawa
   -- {
   --   "rebelot/kanagawa.nvim",
