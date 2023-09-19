@@ -255,7 +255,8 @@ exec --no-startup-id xsetroot -solid "#333333"
 # exec feh --bg-scale ~/wallpapers/1.jpg
 exec feh --bg-fill --randomize ~/wallpapers/*
 # terminal transparency
-exec --no-startup-id compton
+exec picom -f
+# exec --no-startup-id compton
 # language toggle
 exec_always --no-startup-id setxkbmap -model pc105 -layout us,ge -option grp:win_space_toggle
 # swap caps and esc
