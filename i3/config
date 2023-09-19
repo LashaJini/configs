@@ -252,7 +252,8 @@ workspace_auto_back_and_forth yes
 # bg color
 exec --no-startup-id xsetroot -solid "#333333"
 # set wallpaper
-exec feh --bg-scale ~/images/wallpapers/space.png
+# exec feh --bg-scale ~/wallpapers/1.jpg
+exec feh --bg-fill --randomize ~/wallpapers/*
 # terminal transparency
 exec --no-startup-id compton
 # language toggle
