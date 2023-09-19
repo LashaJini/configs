@@ -194,3 +194,6 @@ end
 
 map("n", "<leader>fO", "<cmd>lua ToggleAllFolds()<cr>", { desc = "Toggle all folds" })
 map("n", "<leader>fo", "<cmd>lua ToggleFolds()<cr>", { desc = "Toggle fold" })
+
+-- windows
+map("n", "<F3>", "<cmd>WindowsMaximize<cr>", { desc = "Maximize window" })
