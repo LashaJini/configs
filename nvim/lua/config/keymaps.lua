@@ -197,3 +197,6 @@ map("n", "<leader>fo", "<cmd>lua ToggleFolds()<cr>", { desc = "Toggle fold" })
 
 -- windows
 map("n", "<F3>", "<cmd>WindowsMaximize<cr>", { desc = "Maximize window" })
+
+-- vimspector
+map("n", "<F5>", "<cmd>call vimspector#Launch()<cr>", { desc = "Debug" })

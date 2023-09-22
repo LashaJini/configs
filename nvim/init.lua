@@ -4,6 +4,7 @@ require("config.lazy")
 -- nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
 require("lspconfig").gopls.setup({})
+require("lspconfig").tsserver.setup({})
 
 -- ufo
 require("ufo").setup({
