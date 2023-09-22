@@ -16,8 +16,14 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+local function CD()
+  vim.cmd("cd %:p:h")
+  vim.cmd("pwd")
+end
+
 map("n", "<leader>bg", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
 map("n", "s", "xi", { desc = "x + i", remap = true })
+map("n", "<leader>cd", CD, { desc = "Change directory to current file" })
 
 map("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
 map("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
