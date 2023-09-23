@@ -2,10 +2,6 @@ return {
   -- add gruvbox
   {
     "ellisonleao/gruvbox.nvim",
-    opts = function()
-      vim.o.background = "dark" -- or "light" for light mode
-      vim.cmd([[colorscheme gruvbox]])
-    end,
   },
 
   -- -- tokyonight

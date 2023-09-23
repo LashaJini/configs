@@ -6,6 +6,14 @@ require("config.lazy")
 require("lspconfig").gopls.setup({})
 require("lspconfig").tsserver.setup({})
 require("lspconfig").pyright.setup({})
+require("lspconfig").sqlls.setup({})
+
+require("gruvbox").setup({
+  contrast = "", -- can be "hard", "soft" or empty string
+  transparent_mode = true,
+})
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd("colorscheme gruvbox")
 
 -- ufo
 require("ufo").setup({

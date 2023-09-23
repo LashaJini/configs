@@ -6,8 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-vim.cmd("au ColorScheme * hi Normal ctermbg=none guibg=none")
-vim.cmd("au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red")
+-- vim.cmd("au ColorScheme * hi Normal ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red")
 
 require("lazy").setup({
   spec = {
