@@ -204,5 +204,19 @@ map("n", "<leader>fo", "<cmd>lua ToggleFolds()<cr>", { desc = "Toggle fold" })
 -- windows
 map("n", "<F3>", "<cmd>WindowsMaximize<cr>", { desc = "Maximize window" })
 
--- vimspector
-map("n", "<F5>", "<cmd>call vimspector#Launch()<cr>", { desc = "Debug" })
+-- delve
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+map("n", "<F5>", "<cmd>lua require('dapui').toggle()<cr>", { desc = "Toggle debugger UI (dapui)" })
+map("n", "<leader>da", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Toggle breakpoint (dap)" })
+map("n", "<leader>dc", "<cmd>lua require('dap').continue()<cr>", { desc = "Continue (dap)" })
+map("n", "<leader>dso", "<cmd>lua require('dap').step_over()<cr>", { desc = "Step over (dap)" })
+map("n", "<leader>dsi", "<cmd>lua require('dap').step_into()<cr>", { desc = "Step into (dap)" })

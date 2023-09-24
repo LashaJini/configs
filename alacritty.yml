@@ -14,7 +14,7 @@ font:
   italic:
     family: "JetBrains Mono"
     style: "Light Italic"
-  size: 8.0
+  size: 7.0
 colors:
   normal:
     black:   '0xffffff'
