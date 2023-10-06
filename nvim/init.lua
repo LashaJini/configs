@@ -1,6 +1,8 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown]])
+
 -- nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
 -- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
@@ -38,6 +40,8 @@ require("lspconfig").gopls.setup({ handlers = handlers })
 require("lspconfig").tsserver.setup({ handlers = handlers })
 require("lspconfig").pyright.setup({ handlers = handlers })
 require("lspconfig").sqlls.setup({ handlers = handlers })
+require("lspconfig").marksman.setup({ handlers = handlers })
+require("lspconfig").mdx_analyzer.setup({ handlers = handlers })
 
 -- colorscheme
 require("gruvbox").setup({

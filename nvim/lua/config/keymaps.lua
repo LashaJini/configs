@@ -130,8 +130,7 @@ end, { desc = "Flash" })
 
 -- telescope
 local builtin = require("telescope.builtin")
-map("n", "<F2><cr>", builtin.find_files, { desc = "Find files (telescope)" })
-map("n", "<F2>g", builtin.live_grep, { desc = "Live grep (telescope)" })
+map("n", "<leader>sf", builtin.find_files, { desc = "Find files (telescope)" })
 
 -- nvim-lspconfig
 map("n", "<leader>D", vim.diagnostic.open_float, { desc = "Open diagnostics" })
