@@ -36,6 +36,8 @@ vim.diagnostic.config({
   },
   float = { border = border("FloatBorder") },
 })
+-- :MasonInstall vue-language-server
+-- :TSInstall vue
 require("lspconfig").gopls.setup({ handlers = handlers })
 require("lspconfig").tsserver.setup({ handlers = handlers })
 require("lspconfig").pyright.setup({ handlers = handlers })
