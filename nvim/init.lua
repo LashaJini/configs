@@ -2,6 +2,7 @@
 require("config.lazy")
 
 vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown]])
+vim.cmd("set ignorecase!")
 
 -- nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
