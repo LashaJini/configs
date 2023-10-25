@@ -32,6 +32,7 @@ pyenv init - | source
 
 # aliases
 alias k="kubectl"
+alias d="docker"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # ====> fzf
