@@ -13,3 +13,27 @@ snippet : "shorthand var"
 
 snippet ginjson "gin json return"
 	ctx.JSON(${1:http.StatusBadRequest}, gin.H{${2:"error"}: ${3:err.Error()}})
+
+snippet ta "custom assert test function"
+	func assert(t testing.TB, name string, expected, got ${1:[]int}) {
+		t.Helper()
+		if ${2:!reflect.DeepEqual(expected, got)} {
+			t.Errorf("%s: expected %#v, got %#v", name, expected, got)
+		}
+	}
+
+snippet td "dsa table driven test"
+	func Test${1}(t *testing.T) {
+		fixtures := []struct {
+			name     string
+			${2:input} ${3:int}
+			expected ${4:int}
+		}{
+			{name: "${5:test #1}", ${2:input}: ${6}, expected: ${7}},
+		}
+
+		for _, tt := range fixtures {
+			got := ${1}(tt.${2})
+			assert(t, tt.name, tt.expected, got)
+		}
+	}
