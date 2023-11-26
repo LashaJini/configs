@@ -33,6 +33,7 @@ pyenv init - | source
 # aliases
 alias k="kubectl"
 alias d="docker"
+alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # ====> fzf
