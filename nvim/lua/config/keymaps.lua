@@ -21,6 +21,8 @@ local function CD()
   vim.cmd("pwd")
 end
 
+map("n", "dfi", "f{a <cr><esc>O", { noremap = true, silent = true })
+
 map("n", "<leader>bg", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
 map("n", "s", "xi", { desc = "x + i", remap = true })
 map("n", "<leader>cd", CD, { desc = "Change directory to current file" })
