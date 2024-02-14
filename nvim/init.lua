@@ -47,14 +47,23 @@ require("lspconfig").sqlls.setup({ handlers = handlers })
 require("lspconfig").marksman.setup({ handlers = handlers })
 require("lspconfig").mdx_analyzer.setup({ handlers = handlers })
 
--- colorscheme
+-- -- colorscheme
 require("gruvbox").setup({
   contrast = "", -- can be "hard", "soft" or empty string
   transparent_mode = true,
   dim_inactive = false,
 })
-vim.o.background = "dark" -- or "light" for light mode
+require("github-theme").setup({
+  options = {
+    contrast = "", -- can be "hard", "soft" or empty string
+    transparent = false,
+    dim_inactive = true,
+  },
+})
+-- vim.o.background = "dark" -- or "light" for light mode
 vim.cmd("colorscheme gruvbox")
+-- vim.cmd("colorscheme github_dark")
+-- vim.cmd("colorscheme github_light")
 
 -- ufo
 require("ufo").setup({
