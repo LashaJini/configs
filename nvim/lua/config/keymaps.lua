@@ -27,7 +27,7 @@ map("n", "dfi", "f{a <cr><esc>O", { noremap = true, silent = true })
 map(
   "n",
   "<leader>bg",
-  ':exec &bg=="light"? "set bg=dark | colorscheme gruvbox" : "set bg=light | colorscheme github_light_high_contrast"<CR>',
+  ':exec &bg=="light"? "colorscheme gruvbox | set bg=dark" : "colorscheme github_light | set bg=light"<CR>',
   { noremap = true, silent = true }
 )
 map("n", "s", "xi", { desc = "x + i", remap = true })
