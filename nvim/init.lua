@@ -5,6 +5,9 @@ vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown]])
 vim.cmd("set ignorecase!")
 vim.cmd("set noswapfile")
 
+-- sourcegraph cody
+-- require("sg").setup()
+
 -- nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
 -- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
@@ -110,6 +113,17 @@ dap.configurations.go = {
     program = "./${relativeFileDirname}",
   },
 }
+
+-- tabnine
+require("tabnine").setup({
+  disable_auto_comment = true,
+  accept_keymap = "<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = { gui = "#808080", cterm = 244 },
+  exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+  log_file_path = nil, -- absolute path to Tabnine log file
+})
 
 -- -- nvim-cmp
 -- local cmp = require("cmp")

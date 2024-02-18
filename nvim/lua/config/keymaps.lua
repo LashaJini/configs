@@ -1,6 +1,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 ---- This file is automatically loaded by lazyvim.config.init
 local Util = require("lazyvim.util")
+local cmp = require("cmp")
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
@@ -227,3 +228,16 @@ map("n", "<leader>da", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc
 map("n", "<leader>dc", "<cmd>lua require('dap').continue()<cr>", { desc = "Continue (dap)" })
 map("n", "<leader>dso", "<cmd>lua require('dap').step_over()<cr>", { desc = "Step over (dap)" })
 map("n", "<leader>dsi", "<cmd>lua require('dap').step_into()<cr>", { desc = "Step into (dap)" })
+
+cmp.setup({
+  mapping = {
+    -- Manually trigger cody completions
+    ["<c-0>"] = cmp.mapping.complete({
+      config = {
+        sources = {
+          { name = "cody" },
+        },
+      },
+    }),
+  },
+})
