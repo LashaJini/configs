@@ -114,16 +114,23 @@ dap.configurations.go = {
   },
 }
 
--- tabnine
-require("tabnine").setup({
-  disable_auto_comment = true,
-  accept_keymap = "<Tab>",
-  dismiss_keymap = "<C-]>",
-  debounce_ms = 800,
-  suggestion_color = { gui = "#808080", cterm = 244 },
-  exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-  log_file_path = nil, -- absolute path to Tabnine log file
-})
+-- -- emmet
+-- -- swap these:
+-- -- let g:user_emmet_expandabbr_key = '<C-y>,'
+-- -- let g:user_emmet_expandword_key = '<C-y>;'
+-- vim.g.user_emmet_expandabbr_key = "<C-y>;"
+-- vim.g.user_emmet_expandword_key = "<C-y>,"
+
+-- -- tabnine
+-- require("tabnine").setup({
+--   disable_auto_comment = true,
+--   accept_keymap = "<Tab>",
+--   dismiss_keymap = "<C-]>",
+--   debounce_ms = 800,
+--   suggestion_color = { gui = "#808080", cterm = 244 },
+--   exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+--   log_file_path = nil, -- absolute path to Tabnine log file
+-- })
 
 -- -- nvim-cmp
 -- local cmp = require("cmp")

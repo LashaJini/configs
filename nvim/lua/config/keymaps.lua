@@ -241,3 +241,9 @@ cmp.setup({
     }),
   },
 })
+
+-- emmet
+-- vim.g.user_emmet_expandabbr_key = "<C-y>;"
+-- vim.g.user_emmet_expandword_key = "<C-y>,"
+vim.api.nvim_set_keymap("i", "<C-y>;", "<Plug>(emmet-expand-abbr)", { desc = "emmet expand abbr" })
+vim.api.nvim_set_keymap("i", "<C-y>,", "<Plug>(emmet-expand-word)", { desc = "emmet expand word" })
