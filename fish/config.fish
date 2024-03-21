@@ -3,7 +3,7 @@ set -g -x fish_greeting ''
 # set -g -x fish_greeting ''
 
 # exit on <c-d>
-bind \cd 'exit'
+bind \cd exit
 
 # vi stuff
 # <c-c> clears input now
@@ -23,8 +23,9 @@ starship init fish | source
 
 #set -x DENO_INSTALL ~/.deno
 #set -x PATH $DENO_INSTALL/bin:$PATH
-set -x GOPATH ~/opt/go
-set -x PATH $HOME/.cargo/bin:$GOPATH/bin:$PATH
+# USE gvm
+#set -x GOPATH ~/opt/go
+#set -x PATH $HOME/.cargo/bin:$GOPATH/bin:$PATH
 #set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 #set -U fish_user_paths $HOME/.local/share/solana/install/active_release/bin $fish_user_paths
 
@@ -51,11 +52,7 @@ bind -M insert \cf 'cd (fdfind -t d . --exclude node_modules --exclude target "/
 bind -M insert \ct ct
 function ct
     set dirname (fdfind -t d . --exclude node_modules --exclude target "/home/jini/" | fzf)
-    count $dirname >0 && \
-        cd $dirname && \
-        read -l -P "Session name: " name && \
-        commandline -f repaint && \
-        tmux_session.sh $name
+    count $dirname >0 && cd $dirname && read -l -P "Session name: " name && commandline -f repaint && tmux_session.sh $name
 end
 # fuzzy find wallpaper images and set as bg
 bind -M insert \cw 'fdfind --exclude node_modules --exclude target -t f . ~/images/wallpapers/ | fzf --bind "enter:execute(feh --bg-scale {})"'
