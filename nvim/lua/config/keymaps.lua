@@ -2,6 +2,7 @@
 ---- This file is automatically loaded by lazyvim.config.init
 local Util = require("lazyvim.util")
 local cmp = require("cmp")
+local gs = require("gitsigns")
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
@@ -15,6 +16,11 @@ local function map(mode, lhs, rhs, opts)
     end
     vim.keymap.set(mode, lhs, rhs, opts)
   end
+end
+
+local function omap(mode, l, r, opts)
+  opts = opts or {}
+  vim.keymap.set(mode, l, r, opts)
 end
 
 local function CD()
@@ -34,11 +40,11 @@ map(
 map("n", "s", "xi", { desc = "x + i", remap = true })
 map("n", "<leader>cd", CD, { desc = "Change directory to current file" })
 
-map("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
-map("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
-map("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
-map("n", "<leader>w", ":w<cr>", { desc = "Save", remap = true })
-map("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
+omap("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
+omap("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
+omap("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
+omap("n", "<leader>w<cr>", ":w<cr>", { desc = "Save", remap = true })
+omap("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
 
 -- windows
 map("n", "<leader>pw", "<C-W>p", { desc = "Previous window", remap = true })
@@ -140,6 +146,7 @@ end, { desc = "Flash" })
 -- telescope
 local builtin = require("telescope.builtin")
 map("n", "<leader>sf", builtin.find_files, { desc = "Find files (telescope)" })
+map("n", "<leader>sag", ":Telescope live_grep_args<cr>", { desc = "Live Grep (args)" })
 
 -- nvim-lspconfig
 map("n", "<leader>D", vim.diagnostic.open_float, { desc = "Open diagnostics" })
@@ -247,3 +254,66 @@ cmp.setup({
 -- vim.g.user_emmet_expandword_key = "<C-y>,"
 vim.api.nvim_set_keymap("i", "<C-y>;", "<Plug>(emmet-expand-abbr)", { desc = "emmet expand abbr" })
 vim.api.nvim_set_keymap("i", "<C-y>,", "<Plug>(emmet-expand-word)", { desc = "emmet expand word" })
+
+-- gitsigns
+-- require("gitsigns").setup({
+--   on_attach = function(bufnr)
+--     local gs = package.loaded.gitsigns
+
+-- local function map(mode, l, r, opts)
+--   opts = opts or {}
+--   opts.buffer = bufnr
+--   vim.keymap.set(mode, l, r, opts)
+-- end
+
+-- Navigation
+map("n", "]c", function()
+  if vim.wo.diff then
+    return "]c"
+  end
+  vim.schedule(function()
+    gs.next_hunk()
+  end)
+  return "<Ignore>"
+end, { expr = true })
+
+map("n", "[c", function()
+  if vim.wo.diff then
+    return "[c"
+  end
+  vim.schedule(function()
+    gs.prev_hunk()
+  end)
+  return "<Ignore>"
+end, { expr = true })
+
+-- Actions
+map("n", "<leader>ghs", gs.stage_hunk, { desc = "GitSigns stage hunk" })
+map("n", "<leader>ghr", gs.reset_hunk, { desc = "GitSigns reset hunk" })
+map("v", "<leader>ghs", function()
+  gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "GitSigns stage hunk" })
+map("v", "<leader>ghr", function()
+  gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "GitSigns reset hunk" })
+
+map("n", "<leader>ghS", gs.stage_buffer, { desc = "GitSigns stage buffer" })
+map("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "GitSigns undo stage hunk" })
+map("n", "<leader>ghR", gs.reset_buffer, { desc = "GitSigns reset buffer" })
+
+map("n", "<leader>ghp", gs.preview_hunk, { desc = "GitSigns preview hunk" })
+map("n", "<leader>ghb", function()
+  gs.blame_line({ full = true })
+end, { desc = "GitSigns blame line" })
+
+map("n", "<leader>ghtb", gs.toggle_current_line_blame, { desc = "GitSigns toggle current line blame" })
+map("n", "<leader>ghd", gs.diffthis, { desc = "GitSigns diff this" })
+map("n", "<leader>ghD", function()
+  gs.diffthis("~")
+end, { desc = "GitSigns diff this ~" })
+map("n", "<leader>ghtd", gs.toggle_deleted, { desc = "GitSigns toggle deleted" })
+
+-- Text object
+map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "" })
+--   end,
+-- })
