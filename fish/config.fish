@@ -75,7 +75,7 @@ set -x FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 
 # end
 
 # rbenv
-status --is-interactive; and source (rbenv init -|psub)
+#status --is-interactive; and source (rbenv init -|psub)
 
 
 # The next line updates PATH for the Google Cloud SDK.
