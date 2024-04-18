@@ -28,6 +28,7 @@ starship init fish | source
 #set -x PATH $HOME/.cargo/bin:$GOPATH/bin:$PATH
 #set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 #set -U fish_user_paths $HOME/.local/share/solana/install/active_release/bin $fish_user_paths
+set -U fish_user_paths $HOME/.rvm/bin $fish_user_paths
 
 pyenv init - | source
 
