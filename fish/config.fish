@@ -101,3 +101,4 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 kubectl completion fish | source
 rvm default
+set -x GEM_HOME (rvm gemdir)
