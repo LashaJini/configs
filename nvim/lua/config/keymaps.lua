@@ -43,7 +43,7 @@ map("n", "<leader>cd", CD, { desc = "Change directory to current file" })
 omap("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
 omap("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
 omap("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
-omap("n", "<leader>w<cr>", ":w<cr>", { desc = "Save", remap = true })
+omap("n", "<leader>w<cr>", ":w<cr>", { desc = "Save", remap = true, silent = true })
 omap("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
 
 -- windows

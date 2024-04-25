@@ -1,20 +1,24 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, {
-          "ninja",
-          "python",
-          "rst",
-          "toml",
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        "bash",
+        "ninja",
+        "python",
+        "rst",
+        "toml",
 
-          "go",
-          "gomod",
-          "gowork",
-          "gosum",
-        })
-      end
-    end,
+        "markdown",
+        "markdown_inline",
+
+        "go",
+        "gomod",
+        "gowork",
+        "gosum",
+      },
+    },
   },
 }

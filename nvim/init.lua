@@ -4,6 +4,8 @@ require("config.lazy")
 vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown]])
 vim.cmd("set ignorecase!")
 vim.cmd("set noswapfile")
+-- markdown code block was invisible until hovered
+vim.cmd("set conceallevel=0")
 
 -- sourcegraph cody
 -- require("sg").setup()
