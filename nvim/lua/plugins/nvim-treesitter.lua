@@ -14,10 +14,16 @@ return {
         "markdown",
         "markdown_inline",
 
+        "ruby",
+
         "go",
         "gomod",
         "gowork",
         "gosum",
+
+        "ron",
+        "rust",
+        "toml",
       },
     },
   },

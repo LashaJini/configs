@@ -16,6 +16,7 @@ return {
     },
     opts = {
       servers = {
+        solargraph = {},
         gopls = {
           keys = {
             -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
