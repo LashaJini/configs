@@ -35,6 +35,7 @@ pyenv init - | source
 # aliases
 # alias k="kubectl"
 alias k="minikube kubectl --"
+alias mk="minikube"
 alias d="docker"
 alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 
@@ -80,9 +81,9 @@ set -x FZF_DEFAULT_OPTS '--cycle --height=50% --border=rounded --margin=1,1,1,1 
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jini/opt/gcloud/google-cloud-sdk/path.fish.inc' ]
-    . '/home/jini/opt/gcloud/google-cloud-sdk/path.fish.inc'
-end
+#if [ -f '/home/jini/opt/gcloud/google-cloud-sdk/path.fish.inc' ]
+#    . '/home/jini/opt/gcloud/google-cloud-sdk/path.fish.inc'
+#end
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 set -gx PATH $HOME/.cabal/bin /home/jini/.ghcup/bin $PATH # ghcup-env
@@ -100,6 +101,8 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
+minikube completion fish | source
 kubectl completion fish | source
+
 rvm default
 set -x GEM_HOME (rvm gemdir)
