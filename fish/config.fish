@@ -33,9 +33,9 @@ set -U fish_user_paths $HOME/.rvm/bin $fish_user_paths
 pyenv init - | source
 
 # aliases
-# alias k="kubectl"
-alias k="minikube kubectl --"
+alias k="kubectl"
 alias mk="minikube"
+alias mkk="minikube kubectl --"
 alias d="docker"
 alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 
