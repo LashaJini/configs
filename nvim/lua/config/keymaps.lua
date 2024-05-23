@@ -40,11 +40,11 @@ map(
 map("n", "s", "xi", { desc = "x + i", remap = true })
 map("n", "<leader>cd", CD, { desc = "Change directory to current file" })
 
-omap("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true })
-omap("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true })
-omap("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true })
+omap("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true, silent = true })
+omap("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true, silent = true })
+omap("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true, silent = true })
 omap("n", "<leader>w<cr>", ":w<cr>", { desc = "Save", remap = true, silent = true })
-omap("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true })
+omap("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true, silent = true })
 
 -- windows
 map("n", "<leader>pw", "<C-W>p", { desc = "Previous window", remap = true })
