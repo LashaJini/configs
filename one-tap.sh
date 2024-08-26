@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## OLD
+
 # We want
 # vi keybindings in browser
 # nvm
@@ -23,10 +25,10 @@ sudo apt-get install -y \
 	alsa-utils \
 	alsa-firwmare-loaders \
 	rsync \
-  	brightnessctl \
-  	nautilus \
-  	py3status \
-  	fonts-font-awesome \
+  brightnessctl \
+  nautilus \
+  py3status \
+  fonts-font-awesome \
 	curl
 
 # CLONE IT SILLY
@@ -48,16 +50,17 @@ mkdir ~/.config/nvim/plugged -p
 
 ## fish
 
-echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_9.0/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
-curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_9.0/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
-sudo apt update -y
-sudo apt install fish -y
+#echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_9.0/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+#curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_9.0/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+#sudo apt update -y
+#sudo apt install fish -y
 
 mkdir ~/.config/fish -p
 
-rm -rf /home/$USER/.local/share/omf
+#rm -rf /home/$USER/.local/share/omf
 curl https://raw.githubusercontent.com/LashaJini/configs/master/fish/config.fish > ~/.config/fish/config.fish
 
+# requires logout/login
 sudo chsh -s /usr/bin/fish
 
 # curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish

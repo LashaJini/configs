@@ -29,8 +29,9 @@ starship init fish | source
 #set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 #set -U fish_user_paths $HOME/.local/share/solana/install/active_release/bin $fish_user_paths
 set -U fish_user_paths $HOME/.rvm/bin $fish_user_paths
+set -U fish_user_paths /opt/nvim/ $fish_user_paths
 
-pyenv init - | source
+#pyenv init - | source
 
 # aliases
 alias g="git"
@@ -98,12 +99,8 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+#minikube completion fish | source
+#kubectl completion fish | source
 
-minikube completion fish | source
-kubectl completion fish | source
-
-rvm default
-set -x GEM_HOME (rvm gemdir)
+#rvm default
+#set -x GEM_HOME (rvm gemdir)
