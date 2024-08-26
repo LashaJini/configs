@@ -111,3 +111,25 @@ sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
 
 curl -sSL https://install.python-poetry.org | python3 -
 poetry completions fish >~/.config/fish/completions/poetry.fish
+
+## go & gvm
+sudo apt-get install curl git mercurial make binutils bison gcc build-essential
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
+# bash
+# bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+# source $HOME/.gvm/scripts/gvm
+# gvm install go1.4
+# gvm use go1.4
+
+omf install https://github.com/JGAntunes/fish-gvm
+omf install https://github.com/edc/bass
+
+gvm install go1.4 -B
+gvm use go1.4
+export GOROOT_BOOTSTRAP=$GOROOT
+gvm install go1.17.13
+gvm use go1.17.13
+export GOROOT_BOOTSTRAP=$GOROOT
+gvm install go1.20
+gvm use go1.20
