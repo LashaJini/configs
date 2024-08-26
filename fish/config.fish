@@ -30,6 +30,7 @@ starship init fish | source
 #set -U fish_user_paths $HOME/.local/share/solana/install/active_release/bin $fish_user_paths
 set -U fish_user_paths $HOME/.rvm/bin $fish_user_paths
 set -U fish_user_paths /opt/nvim/ $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 
 #pyenv init - | source
 

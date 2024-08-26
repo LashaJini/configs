@@ -16,6 +16,8 @@
 #alsa-utils \
 #alsa-firwmare-loaders \
 
+mkdir ~/ws
+
 sudo apt-get install -y \
   alacritty \
   i3 \
@@ -87,30 +89,25 @@ curl https://raw.githubusercontent.com/LashaJini/configs/master/tmux/.tmux.conf 
 
 mkdir ~/ws/scripts -p
 
-### tmux_sessoin.sh
+### tmux_session.sh
 
-curl https://raw.githubusercontent.com/LashaJini/scripts/master/tmux_session.sh >~/ws/scripts/tmux_session.sh
-chmod +x ~/ws/scripts/tmux_session.sh
+git clone git@github.com-lashajini:LashaJini/scripts.git ~/ws/scripts
 
 sudo ln -sf /home/$USER/ws/scripts/tmux_session.sh /usr/local/bin/tmux_session.sh
 
 ### i3lock
 
-curl https://raw.githubusercontent.com/LashaJini/scripts/master/i3lock.sh >~/ws/scripts/i3lock.sh
-chmod +x ~/ws/scripts/i3lock.sh
-
 sudo ln -sf /home/$USER/ws/scripts/i3lock.sh /usr/local/bin/lock.sh
 
 ### scrn
-
-curl https://raw.githubusercontent.com/LashaJini/scripts/master/scrn.sh >~/ws/scripts/scrn.sh
-chmod +x ~/ws/scripts/scrn.sh
 
 sudo ln -sf /home/$USER/ws/scripts/scrn.sh /usr/local/bin/scrn.sh
 
 ### jq_curl
 
-curl https://raw.githubusercontent.com/LashaJini/scripts/master/jq_curl.sh >~/ws/scripts/jq_curl.sh
-chmod +x ~/ws/scripts/jq_curl.sh
-
 sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
+
+## poetry
+
+curl -sSL https://install.python-poetry.org | python3 -
+poetry completions fish >~/.config/fish/completions/poetry.fish
