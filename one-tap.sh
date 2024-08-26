@@ -11,7 +11,6 @@ sudo apt-get install -y \
 	i3 \
 	screenfetch \
 	htop \
-	neovim \
 	tmux \
 	compton \
 	feh \
@@ -24,10 +23,10 @@ sudo apt-get install -y \
 	alsa-utils \
 	alsa-firwmare-loaders \
 	rsync \
-  brightnessctl \
-  nautilus \
-  py3status \
-  fonts-font-awesome \
+  	brightnessctl \
+  	nautilus \
+  	py3status \
+  	fonts-font-awesome \
 	curl
 
 # CLONE IT SILLY
@@ -43,9 +42,9 @@ curl https://raw.githubusercontent.com/LashaJini/configs/master/i3/i3status.conf
 
 mkdir ~/.config/nvim/plugged -p
 
-curl https://raw.githubusercontent.com/LashaJini/configs/master/nvim/init.vim > ~/.config/nvim/init.vim
-
-curl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > ~/.config/nvim/plugged/plug.vim
+#curl https://raw.githubusercontent.com/LashaJini/configs/master/nvim/init.vim > ~/.config/nvim/init.vim
+#
+#curl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > ~/.config/nvim/plugged/plug.vim
 
 ## fish
 
@@ -109,14 +108,14 @@ sudo ln -sf /home/$USER/ws/scripts/jq_curl.sh /usr/local/bin/jq_curl
 
 # Misc
 
-- https://www.kali.org/docs/general-use/enabling-root/
-- https://confluence.jaytaala.com/display/TKB/My+Manjaro+i3+setup
-- https://forums.gentoo.org/viewtopic-p-8667066.html?sid=7143695658a5406b75f89500bc3346e8
-- Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
-
-- `dmesg`
-- `/var/log/messages`
-- sound problems. Look for: hda, sound, audio
+#- https://www.kali.org/docs/general-use/enabling-root/
+#- https://confluence.jaytaala.com/display/TKB/My+Manjaro+i3+setup
+#- https://forums.gentoo.org/viewtopic-p-8667066.html?sid=7143695658a5406b75f89500bc3346e8
+#- Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
+#
+#- `dmesg`
+#- `/var/log/messages`
+#- sound problems. Look for: hda, sound, audio
 
 ## nvm
 
