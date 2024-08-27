@@ -10,7 +10,6 @@ return {
         "impl",
         "gomodifytags",
         "gofumpt",
-        "solargraph",
       })
     end,
   },

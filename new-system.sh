@@ -37,6 +37,7 @@ sudo apt-get install -y \
   nautilus \
   py3status \
   fonts-font-awesome \
+  ripgrep \
   curl
 
 ## nvim
