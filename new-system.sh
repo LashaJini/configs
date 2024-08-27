@@ -12,6 +12,8 @@
 #         IdentityFile=/home/jini/.ssh/<name>
 #
 # Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
+#
+# git config --global core.editor nvim
 
 #alsa-utils \
 #alsa-firwmare-loaders \
