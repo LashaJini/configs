@@ -139,3 +139,6 @@ gvm use go1.20
 omf install nvm
 # nvm alias default <version>
 # nvm use default
+
+## lazygit
+go install github.com/jesseduffield/lazygit@latest
