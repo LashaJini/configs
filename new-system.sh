@@ -80,7 +80,7 @@ rm JetBrainsMono.zip
 
 curl -sS https://starship.rs/install.sh | sh
 
-curl https://raw.githubusercontent.com/LashaJini/configs/master/starship/starship.toml >~/.config/starship.yml
+curl https://raw.githubusercontent.com/LashaJini/configs/master/starship/starship2.toml >~/.config/starship.toml
 
 ## fish
 
