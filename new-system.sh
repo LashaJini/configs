@@ -69,10 +69,12 @@ cp ./alacritty.yml ~/.config/alacritty/
 # sudo update-alternatives --config x-terminal-emulator
 sudo apt-get install picom # for terminal transparency
 
-wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
-sudo unzip ./JetBrainsMono-2.304.zip -d /usr/share/fonts/JetBrainsMono
+# https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.2.1
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+sudo unzip ./JetBrainsMono.zip -d /usr/share/fonts/JetBrainsMono
 fc-cache -f -v
-rm JetBrainsMono-2.303.zip
+rm JetBrainsMono.zip
+# fc-list
 
 ## starship
 

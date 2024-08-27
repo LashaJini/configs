@@ -1,20 +1,20 @@
 window:
-  opacity: 0.9
+  opacity: 0.8
   padding:
     x: 10
     y: 10
     dynamic_padding: false
 font:
   normal:
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Light
   bold:
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Medium
   italic:
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: "Light Italic"
-  size: 10.0
+  size: 8.0
 colors:
   normal:
     black:   '0xffffff'
