@@ -14,6 +14,9 @@
 # Add `$USER    ALL=(ALL) NOPASSWD: ALL` at the end of the `/etc/sudoers`
 #
 # git config --global core.editor nvim
+#
+# if i3 dmenu does not show all the newly installed binaries delete cache:
+# rm ~/.cache/dmenu_run
 
 #alsa-utils \
 #alsa-firwmare-loaders \
@@ -40,6 +43,7 @@ sudo apt-get install -y \
   py3status \
   fonts-font-awesome \
   ripgrep \
+  snapd \
   curl
 
 ## nvim
