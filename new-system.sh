@@ -47,6 +47,7 @@ sudo apt-get install -y \
   curl
 
 ## nvim
+# you may need to run :TSUpdate when copying the config
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 
