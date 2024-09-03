@@ -32,6 +32,11 @@ return {
       window = {
         mappings = {
           ["<space>"] = "none",
+          -- https://github.com/nvim-neo-tree/neo-tree.nvim/issues/531#issuecomment-1252232165
+          ["P"] = function(state)
+            local node = state.tree:get_node()
+            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+          end,
         },
       },
       default_component_configs = {
