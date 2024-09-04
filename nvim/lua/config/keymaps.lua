@@ -44,6 +44,7 @@ omap("n", "<leader>q<cr>", ":bd<cr>", { desc = "Close", remap = true, silent = t
 omap("n", "<leader>qq", ":qa<cr>", { desc = "Close all", remap = true, silent = true })
 omap("n", "<leader>aq", ":qa<cr>", { desc = "Close all", remap = true, silent = true })
 omap("n", "<leader>w<cr>", ":w<cr>", { desc = "Save", remap = true, silent = true })
+omap("n", "<leader>w", ":w<cr>", { desc = "Save", remap = true, silent = true })
 omap("n", "<leader>aw", ":wa<cr>", { desc = "Save all", remap = true, silent = true })
 
 -- windows
