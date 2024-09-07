@@ -32,6 +32,7 @@ set -U fish_user_paths $HOME/.rvm/bin $fish_user_paths
 set -U fish_user_paths /opt/nvim/ $fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 set -U fish_user_paths /snap/bin $fish_user_paths
+set -U fish_user_paths /opt/flutter/bin $fish_user_paths
 
 #pyenv init - | source
 
@@ -102,8 +103,8 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-#minikube completion fish | source
-#kubectl completion fish | source
+minikube completion fish | source
+kubectl completion fish | source
 
 #rvm default
 #set -x GEM_HOME (rvm gemdir)

@@ -171,3 +171,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo groupadd docker
 # relog
 sudo usermod -aG docker $USER
+
+## fvm
+curl -fsSL https://fvm.app/install.sh | bash
+sudo ln -s $HOME/.fvm_flutter/bin/fvm /usr/local/bin/fvm
