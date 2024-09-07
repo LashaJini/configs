@@ -10,6 +10,7 @@ return {
         "impl",
         "gomodifytags",
         "gofumpt",
+        "dcm",
       })
     end,
   },

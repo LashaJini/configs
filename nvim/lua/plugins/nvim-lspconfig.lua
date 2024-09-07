@@ -60,6 +60,7 @@ return {
         },
 
         pyright = {},
+        dartls = {},
       },
       setup = {
         gopls = function()
