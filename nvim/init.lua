@@ -173,3 +173,8 @@ dap.configurations.go = {
 --     desc = "send all items to quickfix",
 --   },
 -- })
+
+-- https://www.reddit.com/r/neovim/comments/10qvoer/comment/j6uzvez/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+require("lspconfig").dartls.setup({
+  cmd = { "dart", "language-server", "--protocol=lsp" },
+})

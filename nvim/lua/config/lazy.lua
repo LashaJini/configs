@@ -24,6 +24,7 @@ require("lazy").setup({
     { import = "plugins" },
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.coding.codeium" },
+    { import = "lazyvim.plugins.extras.coding.mini-comment" },
     -- { import = "lazyvim.plugins.extras.ui.alpha" },
   },
   defaults = {
