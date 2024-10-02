@@ -18,6 +18,11 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
+        "tsx",
+        "json",
+        "css",
+        "html",
+
         "bash",
         "ninja",
         "python",

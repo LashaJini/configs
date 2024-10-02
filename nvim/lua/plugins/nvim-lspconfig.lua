@@ -16,6 +16,16 @@ return {
     },
     opts = {
       servers = {
+        tsserver = {
+          filetypes = {
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+          },
+        },
         gopls = {
           keys = {
             -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
@@ -84,6 +94,9 @@ return {
           -- end workaround
         end,
       },
+      -- config = function()
+      --   require("lspconfig").tsserver.setup({})
+      -- end,
     },
   },
 }

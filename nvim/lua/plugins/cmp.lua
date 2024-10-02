@@ -18,7 +18,8 @@ return {
 
       opts.snippet = {
         expand = function(args)
-          vim.fn["luasnip"].lsp_expand(args.body)
+          -- vim.fn["luasnip"].lsp_expand(args.body)
+          require("luasnip").lsp_expand(args.body)
         end,
       }
 
