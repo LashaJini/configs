@@ -45,6 +45,13 @@ alias d="docker"
 alias docker-compose="docker compose"
 alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 
+function dpsql
+    docker exec -it $argv[1] \
+        bash -c "echo 'set -o vi'>~/.bashrc && \
+	             echo 'set editing-mode vi'>~/.inputrc && \
+	             psql -U $argv[2] -p $argv[3] -d $argv[4]"
+end
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # ====> fzf
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

@@ -24,7 +24,7 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "plugins" },
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
-    { import = "lazyvim.plugins.extras.coding.codeium" },
+    { import = "lazyvim.plugins.extras.coding.codeium", commit = "937667b2cadc7905e6b9ba18ecf84694cf227567" },
     { import = "lazyvim.plugins.extras.coding.mini-comment" },
     -- { import = "lazyvim.plugins.extras.ui.alpha" },
   },
