@@ -28,3 +28,15 @@ end)
 vim.keymap.set("n", "<leader>rn", function()
   vscode.action("editor.action.rename")
 end)
+
+vim.keymap.set("n", "<leader>q", function()
+  vscode.action("workbench.action.closeActiveEditor")
+end)
+
+vim.keymap.set("n", "<leader>\\", function()
+  vscode.action("workbench.action.splitEditorRight")
+end)
+
+vim.keymap.set("n", "<leader>-", function()
+  vscode.action("workbench.action.splitEditorDown")
+end)
