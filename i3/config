@@ -19,7 +19,7 @@ set $mod Mod4
 #
 ## This font is widely installed, provides lots of unicode glyphs, right-to-left
 ## text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+##font pango:DejaVu Sans Mono 8
 #
 ## The combination of xss-lock, nm-applet and pactl is a popular choice, so
 ## they are included here as an example. Modify as you see fit.
@@ -33,7 +33,7 @@ font pango:DejaVu Sans Mono 8
 #exec --no-startup-id nm-applet
 #
 ## Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+#set $refresh_i3status killall -SIGUSR1 i3status
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -41,8 +41,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 #
 ## Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier $mod
-#
-## start a terminal
+
+# start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -122,6 +122,7 @@ set $ws10 "10: 🎵"
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
+# bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
@@ -202,17 +203,18 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # mode hide
-        # status_command i3status --config ~/.config/i3/i3status.conf
-        status_command py3status --config ~/.config/i3/i3status.conf
-        separator_symbol ":|:"
-        # i3bar_command i3bar --transparency
-
-        colors {
-          separator #fc7f03
-
-          focused_workspace  #4c7899 #fc7f03 #ffffff
-        }
+        # # mode hide
+        # # status_command i3status --config ~/.config/i3/i3status.conf
+        # status_command py3status --config ~/.config/i3/i3status.conf
+        # separator_symbol ":|:"
+        # # i3bar_command i3bar --transparency
+        #
+        # colors {
+        #   separator #fc7f03
+        #
+        #   focused_workspace  #4c7899 #fc7f03 #ffffff
+        # }
+        status_command i3blocks
 }
 
 # lock screen
@@ -258,6 +260,6 @@ exec feh --bg-fill --randomize ~/wallpapers/*
 exec picom -f
 # exec --no-startup-id compton
 # language toggle
-exec_always --no-startup-id setxkbmap -model pc105 -layout us,ge -option grp:win_space_toggle
+exec_always --no-startup-id setxkbmap -model pc105 -layout us,ge,de -option grp:win_space_toggle
 # swap caps and esc
 exec_always setxkbmap -option caps:swapescape

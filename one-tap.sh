@@ -11,6 +11,7 @@ sudo usermod -aG sudo $USER
 sudo apt-get install -y \
 	terminator \
 	i3 \
+	i3blocks \
 	screenfetch \
 	htop \
 	tmux \
