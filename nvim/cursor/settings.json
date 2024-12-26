@@ -1,0 +1,35 @@
+{
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "editor.lineNumbers": "relative",
+    "keyboard.dispatch": "keyCode",
+
+    "vim.enableNeovim": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-f>": false,
+        "<C-p>": false
+    },
+    "vim.neovimUseConfigFile": true,
+    "vim.neovimConfigPath": "~/.config/nvim/vscode/init.lua",
+
+    "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/vscode/init.lua",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor",
+    }
+}

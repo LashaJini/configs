@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
   end,
 })
+vim.opt.relativenumber = true
 
 local vscode = require("vscode")
 print(vscode.call("_ping")) -- outputs: pong
