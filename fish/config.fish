@@ -33,6 +33,7 @@ set -U fish_user_paths /opt/nvim/ $fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 set -U fish_user_paths /snap/bin $fish_user_paths
 set -U fish_user_paths /opt/flutter/bin $fish_user_paths
+set -U fish_user_paths $HOME/.pub-cache/bin/ $fish_user_paths
 
 #pyenv init - | source
 
@@ -44,6 +45,7 @@ alias mkk="minikube kubectl --"
 alias d="docker"
 alias docker-compose="docker compose"
 alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
+alias lazyvim="NVIM_APPNAME=lazyvim nvim"
 
 function dpsql
     docker exec -it $argv[1] \
