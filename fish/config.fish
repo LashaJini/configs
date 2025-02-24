@@ -36,10 +36,26 @@ alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 alias lazyvim="NVIM_APPNAME=lazyvim nvim"
 
 function dpsql
+    set -l host localhost # default host
+
+    # Ensure at least 4 arguments remain: container, user, port, and database
+    if test (count $argv) -lt 4
+        echo "Usage: dpsql <container_name> <user> <port> <database> [-h <host>]"
+        return 1
+    end
+
+    # Check if -h flag is provided
+    if test (count $argv) -gt 5
+        if test $argv[5] = -h
+            set host $argv[6]
+        end
+    end
+
+    # usage: dpsql <container_name> <user> <port> <database> [-h <host>]
     docker exec -it $argv[1] \
         bash -c "echo 'set -o vi'>~/.bashrc && \
 	             echo 'set editing-mode vi'>~/.inputrc && \
-	             psql -U $argv[2] -p $argv[3] -d $argv[4] -W"
+	             psql -h $host -U $argv[2] -p $argv[3] -d $argv[4] -W"
 end
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
