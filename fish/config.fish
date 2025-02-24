@@ -32,6 +32,7 @@ alias mk="minikube"
 alias mkk="minikube kubectl --"
 alias d="docker"
 alias docker-compose="docker compose"
+alias dpsf='docker ps --format "table {{.Names}}\t{{.RunningFor}}\t{{.Ports}}"'
 alias pgo-cd="cd $HOME/ws/github/wholesome-ghoul/playground/go"
 alias lazyvim="NVIM_APPNAME=lazyvim nvim"
 
